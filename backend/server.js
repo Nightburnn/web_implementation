@@ -3,6 +3,7 @@ import 'dotenv/config';
 import cors from 'cors';
 
 const app = express();
+const PORT = process.env.PORT || 5001;
 
 app.get('/', (req, res) => {
     res.send('Welcome');
@@ -12,5 +13,5 @@ app.use(express.json());
 app.use(cors());
 
 app.listen(PORT, () => {
-    `Server is listening on http:localhost:${PORT}`
+    console.log(`Server is listening on http://localhost:${PORT}`);
 });

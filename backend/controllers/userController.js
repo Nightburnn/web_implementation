@@ -2,11 +2,11 @@ import asyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
 
 
-export const registerUser = asyncHandler(
+export const register = asyncHandler(
   async (req, res) => {
-    const { name, email, password } = req.body;
-    // handle validation
-    if (!name || !email || !password) {
+    const { firstName, lastName, email, password } = req.body;
+   
+    if (!firstName || !lastName || !email || !password) {
       res.status(400);
       throw new Error('Please fill in all required fields');
     }
@@ -17,11 +17,16 @@ export const registerUser = asyncHandler(
     // check if a user exists
     const userExists = await User.findOne({ email });
     if (userExists) {
+        res.status(400);
       throw new Error('Email already been registered');
+    } else {
+        const user = await User.create({
+            firstName,
+            lastName,
+            email,
+            password
+          });
+      
+          res.status(201).json(user);
     }
-    const user = await User.create({
-      name,
-      email,
-      password
-    });
   });

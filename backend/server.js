@@ -6,6 +6,7 @@ import dbConnect from './config/database.js';
 import errorHandler from './middleware/errors.js';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import userRoutes from './routes/user.js';
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -20,7 +21,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(cookieParser());
 
-
+app.use('api/v1/users', userRoutes);
 app.use(errorHandler);
 
 const startServer = async () => {

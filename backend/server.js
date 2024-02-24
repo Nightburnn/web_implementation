@@ -6,6 +6,7 @@ import dbConnect from './config/database.js';
 import errorHandler from './middleware/errors.js';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import passport from 'passport';
 import userRoutes from './routes/user.js';
 
 const app = express();
@@ -20,8 +21,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(morgan('dev'));
 app.use(cookieParser());
+app.use(session({
+  secret: process.env.SECRET_KEY,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+		maxAge: 24 * 60 * 60 * 1000,
+	}
 
-app.use('api/v1/users', userRoutes);
+}))
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/api/v1/users', userRoutes);
+
 app.use(errorHandler);
 
 const startServer = async () => {

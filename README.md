@@ -33,3 +33,27 @@ The Expense Tracker App is a web application designed to help users track and ma
 
    ```bash
    git clone git@github.com:Nightburnn/web_implementation.git
+
+2. Install dependencies:
+cd web_implementation
+npm install
+
+3. Configure environment variables:
+
+Create a .env file in the root directory and add necessary environment variables.
+
+```
+PORT=5000
+MONGODB_URI=your_mongodb_uri
+SECRET_KEY=your_secret_key 
+```
+4. Run the application:
+npm run start
+The app should be running at `http://localhost:3000`.
+
+### Usage
+* Visit the application in your web browser.
+* Sign up or log in to start recording your expenses and managing your budget.
+
+### License
+This project is licensed under the MIT License.

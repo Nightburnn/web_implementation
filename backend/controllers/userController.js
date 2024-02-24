@@ -52,3 +52,21 @@ export const logout = asyncHandler(
 		req.logout(() => res.status(200).json({ message: 'Logout successful' }));
 	})
 )
+
+export const getUserById = asyncHandler(
+  async (req, res) => {
+  const userId = req.params.id;
+
+  if (!userId.match(/^[0-9a-fA-F]{24}$/)) {
+    res.status(400);
+    throw new Error('Invalid user ID format');
+  }
+
+  const user = await User.findById(userId);
+
+  if (!user) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+  res.status(200).json(user);
+});

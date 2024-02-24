@@ -49,7 +49,7 @@ SECRET_KEY=your_secret_key
 ```
 4. Run the application:
 npm run start
-The app should be running at `http://localhost:3000`.
+The app should be running at `http://localhost:5000`.
 
 ### Usage
 * Visit the application in your web browser.

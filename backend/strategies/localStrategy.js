@@ -2,22 +2,28 @@ import passport from "passport";
 import { Strategy } from "passport-local";
 import User from "../models/userModel.js";
 
-export default passport.use(new Strategy({ usernameField: 'email' }, async (email, password, done) => {
+
+const customFields = {
+    usernameField: 'email'
+};
+
+const verifyCallBack = async (email, password, done) => {
     try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({email});
         if (!user) {
-            res.status(404);
-            throw new Error('User not found!');
+            return done(null, false, { message: 'User not found!' })
         }
         if (!user.validPassword(password)) {
-            res.status(400).send('Invalid Password');
-            throw new Error('Invalid Password');
+            return done(null, false, { message: 'Invalid Password' });
         }
-        done(null, user);
+        return done(null, user);
     } catch (error) {
-        done(error, null);
+        done(error);
     }
-}));
+};
+
+const strategy = new Strategy(customFields, verifyCallBack);
+export default passport.use(strategy);
 
 passport.serializeUser((user, done) => {
     done(null, user.id);

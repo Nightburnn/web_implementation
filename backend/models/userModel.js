@@ -2,14 +2,11 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
 const userSchema = new mongoose.Schema({
-  firstName: {
+  fullName: {
     type: String,
     required: true,
   },
-  lastName: {
-    type: String,
-    required: true,
-  },
+
   email: {
     type: String,
     required: true,
@@ -21,6 +18,7 @@ const userSchema = new mongoose.Schema({
       message: 'Please enter a valid email address',
     },
   },
+  
   password: {
     type: String,
     required: true,

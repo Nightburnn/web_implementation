@@ -2,9 +2,9 @@ import asyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
 
 export const register = asyncHandler(async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { fullName, email, password } = req.body;
 
-  if (!firstName || !lastName || !email || !password) {
+  if (!fullName || !email || !password) {
     res.status(400).json({ error: 'Please fill in all required fields' });
     return;
   }
@@ -23,8 +23,7 @@ export const register = asyncHandler(async (req, res) => {
 
   // Create a new user
   const user = await User.create({
-    firstName,
-    lastName,
+    fullName,
     email,
     password,
   });
@@ -32,8 +31,7 @@ export const register = asyncHandler(async (req, res) => {
   if (user) {
     res.status(201).json({
       _id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      fullName: user.fullName,
       email: user.email,
     });
   } else {

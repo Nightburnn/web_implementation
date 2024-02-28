@@ -57,3 +57,9 @@ The app should be running at `http://localhost:5000`.
 
 ### License
 This project is licensed under the MIT License.
+
+### Documentation
+1. User Authentication and Authorization using passport local strategy done using Postman
+Link to the Documentation https://documenter.getpostman.com/view/27746757/2sA2rFRfJ2
+
+

@@ -11,14 +11,16 @@ const verifyCallBack = async (email, password, done) => {
     try {
         const user = await User.findOne({email});
         if (!user) {
-            return done(null, false, { message: 'User not found!' })
+            return done(null, false, { message: 'Incorrect email'})
         }
-        if (!user.validPassword(password)) {
+        const isPasswordvalid = await user.validPassword(password);
+
+        if (!isPasswordvalid) {
             return done(null, false, { message: 'Invalid Password' });
         }
         return done(null, user);
     } catch (error) {
-        done(error);
+        return done(error);
     }
 };
 

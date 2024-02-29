@@ -1,13 +1,11 @@
 function submitForm() {
     try {
-      const firstName = document.getElementById('firstName').value;
-      const lastName = document.getElementById('lastName').value;
+      const fullName = document.getElementById('fullName').value;
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
   
       const formData = {
-        firstName,
-        lastName,
+        fullName,
         email,
         password
       };

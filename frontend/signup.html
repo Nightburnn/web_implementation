@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+     <!-- SweetAlert2 CSS -->
+
+
 </head>
 <style>
       *,
@@ -134,26 +137,27 @@ p{
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form action="">
+    <form action="" id="signupForm">
         <h3>Tell us about you</h3>
 
 
 
-    <label for="first">First Name</label>
-        <input type="text" placeholder="e.g john" id="first" required>
+    <label for="fullname">Full Name</label>
+        <input type="text" placeholder="e.g john snow" id="fullName" required>
 
-        <label for="last">Last Name</label>
-        <input type="text" placeholder="e.g Snow" id="last" required>
+        <label for="email">Email</label>
+        <input type="email" placeholder="e.g you@gmail.com" id="email" required>
+
+        <label for="password">Password</label>
+        <input type="password" placeholder="********" id="password" required>
 
         
 
 
        
 
-      <label for="email">Email</label>
-        <input type="email" placeholder="e.g you@gmail.com" id="email" required>
 
-        <button class="next"> <a href="./password.html"></a>Next</button>
+        <button type="submit" class="next">Submit</button>
 
         <div class="login">
             <p>Already have an account? <a href="./login.html" class="link">Log In</a></p>
@@ -161,4 +165,54 @@ p{
     </form>
 </body>
 <script src="darkLight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById('signupForm').addEventListener('submit', async function (event) {
+      event.preventDefault();
+    
+      const fullName = document.getElementById('fullName').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+    
+      try {
+        const response = await fetch('http://localhost:5000/api/users/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ fullName, email, password }),
+        });
+    
+        if (response.ok) {
+          showSuccessAlert('Signup successful!');
+        } else {
+          const errorData = await response.json(); // Assuming the server sends JSON error messages
+          showErrorAlert(errorData.error || 'Unknown error occurred');
+        }
+      } catch (error) {
+        console.error('Network error:', error);
+        showErrorAlert('Network error');
+      }
+    });
+    
+    function showSuccessAlert(message) {
+      Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: message,
+      }).then(() => {
+        // Callback function to execute after the user clicks "OK"
+        window.location.href = './login.html'; // Redirect to the login page
+      });
+    }
+    
+    function showErrorAlert(errorMessage) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error during signup',
+        text: errorMessage,
+      });
+    }
+    </script>
+   <script src="register.js"></script> 
 </html>

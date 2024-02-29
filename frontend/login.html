@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+
 </head>
  <style>
       *,
@@ -139,14 +140,14 @@ p{
         <div class="shape"></div>
     </div>
 
-    <form action="">
+    <form id="loginForm">
         <h3>Please login</h3>
 
-        <label for="username">Username</label>
-        <input type="text" placeholder="e.g you@gmail.com" id="username">
+        <label for="email">Email</label>
+        <input type="text" placeholder="e.g you@gmail.com" id="email" required>
 
         <label for="password">Password</label>
-        <input type="password" placeholder="*********" id="password">
+        <input type="password" placeholder="*********" id="password" required>
 
         <a href="#" class="link">Forgot Password?</a>
 
@@ -156,9 +157,58 @@ p{
             <p>Don't have an account? <a href="./signup.html" class="link">Sign up</a></p>
         </div>
     </form>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js"></script>
-    <script src="darkLight.js"></script>  
+
+    <script src="darkLight.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+     document.getElementById('loginForm').addEventListener('submit', async function (event) {
+  event.preventDefault();
+
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  try {
+    const response = await fetch('http://localhost:5000/api/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+      showSuccessAlert('Login successful!', '/Dashboard/index.html');
+      // Perform additional actions after successful login if needed
+    } else {
+      const errorData = await response.json();
+      showErrorAlert(errorData.error || 'Login failed');
+    }
+  } catch (error) {
+    console.error('Network error:', error);
+    showErrorAlert('Network error');
+  }
+});
+
+function showSuccessAlert(message, redirectTo) {
+  Swal.fire({
+    icon: 'success',
+    title: 'Success',
+    text: message,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Redirect to the specified URL
+      window.location.href = "Dashboard/index.html"
+    }
+  });
+}
+
+function showErrorAlert(errorMessage) {
+  Swal.fire({
+    icon: 'error',
+    title: 'Error during login',
+    text: errorMessage,
+  });
+}    </script>
 </body>
 </html>

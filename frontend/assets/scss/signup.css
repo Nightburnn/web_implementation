@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<style>
-        *,
+*,
 *:before,
 *:after{
     padding: 0;
@@ -16,6 +7,7 @@
 }
 body{
     background-color: var(--background);
+    overflow: hidden;
   
 }
 .background{
@@ -96,49 +88,30 @@ input{
     color: var(--text);
 }
 
-.signup{
-    margin-top: 50px;
+
+.next{
+    margin-top: 20px;
     width: 100%;
-    background-color: rgba(255,255,255,0.07);
-    border: 2px solid var(--border);
+    background-color: transparent;
+    border: 2px solid #90EE90;
     color: var(--text);
     padding: 15px 0;
     font-size: 18px;
     font-weight: 600;
     border-radius: 20px;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
-</style>
-<body>
-    <button type="button" class="darkmode darkmode__button-toggle"></button>
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
 
-    <form action="">
-        <h3>Set Password</h3>
+.login{
 
-        
+    align-items: center;
+}
 
-        
-
-       <label for="pass">Password</label>
-        <input type="password" placeholder="nib. 8 characters" id="pass">
-
-       
-
-        <label for="pass">Confirm Password</label>
-        <input type="password" placeholder="nib. 8 characters" id="pass">
-
-
-        <button class="signup">Sign Up</button>
-
-        <div class="login">
-            <p>Already have an account? <a href="./login.html" class="link">Log In</a></p>
-        </div>
-    </form>
-</body>
-<script src="darkLight.js"></script>
-</html>
+.link{
+    color: var(--green);
+    align-items: center;
+}
+p{
+    color: var(--text);  
+}

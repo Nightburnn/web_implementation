@@ -20,12 +20,12 @@ const verifyCallBack = async (email, password, done) => {
         }
         return done(null, user);
     } catch (error) {
-        return done(error);
+        return done(null, false, {message: 'Login failed'});
     }
 };
 
 const strategy = new Strategy(customFields, verifyCallBack);
-export default passport.use(strategy);
+passport.use(strategy);
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -39,3 +39,5 @@ passport.deserializeUser(async (id, done) => {
         done(err);
     }
 });
+
+export default passport;

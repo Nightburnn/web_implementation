@@ -1,27 +1,28 @@
 import asyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
+import passport from 'passport';
 
-export const register = asyncHandler(async (req, res) => {
+export const register = asyncHandler(
+  async (req, res) => {
   const { fullName, email, password } = req.body;
 
   if (!fullName || !email || !password) {
-    res.status(400).json({ error: 'Please fill in all required fields' });
-    return;
+    res.status(400);
+    throw new Error('Please fill in all required fields');
   }
 
-  if (password.length < 6) {
-    res.status(400).json({ error: 'Password must be at least 6 characters long' });
-    return;
+  if (password.length < 8) {
+    res.status(400);
+    throw new Error('Password must be at least 8 characters');
   }
 
-  // Check if a user with the given email already exists
   const userExists = await User.findOne({ email });
+
   if (userExists) {
-    res.status(400).json({ error: 'Email already registered' });
-    return;
+    res.status(400);
+    throw new Error('Email already been registered');
   }
 
-  // Create a new user
   const user = await User.create({
     fullName,
     email,
@@ -35,15 +36,30 @@ export const register = asyncHandler(async (req, res) => {
       email: user.email,
     });
   } else {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500);
+    throw new Error('Internal server error');
   }
 });
 
 export const login = asyncHandler(
-	((req, res) => {
-		res.status(200).json({ message: 'Login successful', user: req.user });
-	})
-)
+  ((req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.status(401).json({message: info.message});
+      }
+
+      req.logIn(user, (err) => {
+        if (err) {
+          return next(err);
+        }
+        return res.status(200).json({message: 'Login successful'});
+      });
+    })(req, res, next);
+  })
+);
 
 export const logout = asyncHandler(
 	((req, res) => {

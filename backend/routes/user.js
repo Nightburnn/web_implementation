@@ -7,7 +7,7 @@ import authProtect from '../middleware/auth.js';
 const router = express.Router();
 
 router.post('/register', register);
-router.post('/login', passport.authenticate('local'), login);
+router.post('/login', login);
 router.get('/logout', authProtect, logout);
 router.get('/:id', authProtect, getUserById);
 

@@ -9,31 +9,31 @@ const userSchema = new mongoose.Schema({
 
   email: {
     type: String,
-    required: true,
+    required: [true, 'please add an email'],
     unique: true,
-    validate: {
-      validator: function (v) {
-        return /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/.test(v);
-      },
-      message: 'Please enter a valid email address',
-    },
+    trim: true,
+    match: [
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      'Please enter a valid email'
+    ],
   },
   
   password: {
     type: String,
-    required: true,
+    required: [true, 'Please add a password'],
+    minLength: [8, 'Password must be up to 8 characters']
   },
 });
 
 userSchema.pre('save', async function (next) {
-  try {
+    if (!this.isModified('password')) {
+      return next();
+    }
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(this.password, salt);
     this.password = hashedPassword;
     next();
-  } catch (error) {
-    next(error);
-  }
 });
 
 userSchema.methods.validPassword = async function (password) {

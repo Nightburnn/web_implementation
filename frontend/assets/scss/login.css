@@ -118,3 +118,26 @@ p{
     color: var(--text);
     
 }
+
+/* Mobile View */
+@media only screen and (max-width: 767px) {
+    
+  
+    form {
+      width: 100%;
+      padding: 30px;
+      
+    }
+
+  }
+  
+  /* Tablet View */
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    
+  
+    form {
+      width: 80%;
+      padding: 40px;
+    }
+  }
+  

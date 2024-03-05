@@ -215,13 +215,13 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2" id="userName"></span>
                     </a>
                     <!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Kevin Anderson</h6>
+                            <h6 id="userName"></h6>
                             <span>Web Designer</span>
                         </li>
                         <li>
@@ -862,6 +862,22 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script>
+        // Your JavaScript code for updating the header UI goes here
+        function updateHeaderUI() {
+          const user = JSON.parse(localStorage.getItem('user'));
+          console.log('User Data:', user); 
+          if (user) {
+            const fullName = user.fullName;
+            
+            document.getElementById('userName').textContent = fullName;
+          }
+        }
+      
+        // Call the function to update header UI when the page loads
+        window.addEventListener('load', updateHeaderUI);
+      </script>
+      
 
 </body>
 

@@ -67,20 +67,82 @@ export const logout = asyncHandler(
 	})
 )
 
-export const getUserById = asyncHandler(
+//Retrieve user profile using fullName
+export const getUserProfile = asyncHandler(
   async (req, res) => {
-  const userId = req.params.id;
-
-  if (!userId.match(/^[0-9a-fA-F]{24}$/)) {
-    res.status(400);
-    throw new Error('Invalid user ID format');
+    const userId = req.user._id;
+  if (!req.user) {
+    res.status(401);
+    throw new Error('Not authorized');
   }
 
   const user = await User.findById(userId);
 
-  if (!user) {
+  if (user) {
+    res.status(200).json({
+      _id: user._id,
+      fullName: user.fullName,
+      email: user.email,
+    });
+  } else {
     res.status(404);
     throw new Error('User not found');
   }
-  res.status(200).json(user);
 });
+
+//Update user profile
+export const updateUserProfile = asyncHandler(
+  async (req, res) => {
+    const userId = req.user._id;
+  if (!req.user) {
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+
+  const user = await User.findById(userId);
+
+  if (user) {
+    user.fullName = req.body.fullName || user.fullName;
+    user.email = req.body.email || user.email;
+
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    const updatedUser = await user.save();
+
+    res.status(200).json({
+      _id: updatedUser._id,
+      fullName: updatedUser.fullName,
+      email: updatedUser.email,
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+//Delete user profile
+
+export const deleteUserProfile = asyncHandler(
+  async (req, res) => {
+    const userId = req.user._id;
+  if (!req.user) {
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+
+  const user = await User.findById(userId);
+
+  if (user) {
+    await user.remove();
+    res.status(200).json({ message: 'User removed' });
+  }
+  else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+}
+);
+
+

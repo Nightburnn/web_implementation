@@ -90,6 +90,7 @@ export const getUserProfile = asyncHandler(
   }
 });
 
+/*
 //Update user profile
 export const updateUserProfile = asyncHandler(
   async (req, res) => {
@@ -144,5 +145,4 @@ export const deleteUserProfile = asyncHandler(
   }
 }
 );
-
-
+*/

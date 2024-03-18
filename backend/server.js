@@ -14,7 +14,7 @@ import { dirname, join } from 'path';
 import userRoutes from './routes/user.js';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(dirname(__filename)); // Go up one level
+const __dirname = dirname(__filename); // Go up one level
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -39,17 +39,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Serve static files from the 'frontend' folder
-app.use(express.static(join(__dirname, 'frontend')));
-console.log(join(__dirname, 'frontend'));
-
-
 // Define your API routes
 app.use('/api/users', userRoutes);
 
-// Catch-all route to serve the 'index.html'
-app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, 'frontend', 'pages', 'login.html'));
+// A simple route to say hello from the server side
+app.get('/', (req, res) => {
+  res.send('Hello from the server side!');
 });
 
 // Error handling middleware

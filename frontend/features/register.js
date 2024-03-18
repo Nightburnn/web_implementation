@@ -10,7 +10,7 @@ function submitForm() {
         password
       };
   
-      fetch('http://localhost:5000/api/v1/users/register', {
+      fetch('https://traq-i4eg.onrender.com/api/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

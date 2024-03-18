@@ -1,4 +1,4 @@
-fetch('http://localhost:5000/api/users/dashboard', {
+fetch('https://traq-i4eg.onrender.com/api/users/dashboard', {
   method: 'GET',
   credentials: 'include', // Include cookies for authentication
 })

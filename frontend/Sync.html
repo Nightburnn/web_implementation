@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Sync Accounts</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="index.html" class="logo d-flex align-items-center">
+                <img src="assets/img/logo.png" alt="">
+                <span class="d-none d-lg-block">Traq</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div>
+        <!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div>
+        <!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li>
+                <!-- End Search Icon-->
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge bg-primary badge-number">4</span>
+                    </a>
+                    <!-- End Notification Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                        <li class="dropdown-header">
+                            You have 4 new notifications
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-exclamation-circle text-warning"></i>
+                            <div>
+                                <h4>Lorem Ipsum</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>30 min. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-x-circle text-danger"></i>
+                            <div>
+                                <h4>Atque rerum nesciunt</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>1 hr. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-check-circle text-success"></i>
+                            <div>
+                                <h4>Sit rerum fuga</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>2 hrs. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-info-circle text-primary"></i>
+                            <div>
+                                <h4>Dicta reprehenderit</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>4 hrs. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-footer">
+                            <a href="#">Show all notifications</a>
+                        </li>
+
+                    </ul>
+                    <!-- End Notification Dropdown Items -->
+
+                </li>
+                <!-- End Notification Nav -->
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-chat-left-text"></i>
+                        <span class="badge bg-success badge-number">3</span>
+                    </a>
+                    <!-- End Messages Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                        <li class="dropdown-header">
+                            You have 3 new messages
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>Maria Hudson</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>4 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>Anna Nelson</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>6 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>David Muldon</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>8 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="dropdown-footer">
+                            <a href="#">Show all messages</a>
+                        </li>
+
+                    </ul>
+                    <!-- End Messages Dropdown Items -->
+
+                </li>
+                <!-- End Messages Nav -->
+
+                <li class="nav-item dropdown pe-3">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                    </a>
+                    <!-- End Profile Image Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>Kevin Anderson</h6>
+                            <span>Web Designer</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="sync.html">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="sync.html">
+                                <i class="bi bi-gear"></i>
+                                <span>Account Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="Transactions.html">
+                                <i class="bi bi-question-circle"></i>
+                                <span>Need Help?</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <!-- End Profile Dropdown Items -->
+                </li>
+                <!-- End Profile Nav -->
+
+            </ul>
+        </nav>
+        <!-- End Icons Navigation -->
+
+    </header>
+    <!-- End Header -->
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="index.html">
+                    <i class="bi bi-grid"></i>
+                    <span>Overview</span>
+                </a>
+            </li>
+            <!-- End Dashboard Nav -->
+
+
+
+            <li class="nav-heading">Pages</li>
+
+            <li class="nav-item">
+                <a class="nav-link " href="sync.html">
+                    <i class="bi bi-person"></i>
+                    <span>Sync Accounts</span>
+                </a>
+            </li>
+            <!-- End Profile Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="Transactions.html">
+                    <i class="bi bi-question-circle"></i>
+                    <span>Transactions</span>
+                </a>
+            </li>
+            <!-- End F.A.Q Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="Budget.html">
+                    <i class="bi bi-envelope"></i>
+                    <span>Budget</span>
+                </a>
+            </li>
+            <!-- End Contact Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="Debts.html">
+                    <i class="bi bi-card-list"></i>
+                    <span>Debts</span>
+                </a>
+            </li>
+            <!-- End Register Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../login.html">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+            <!-- End Login Page Nav -->
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
+
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Sync Accounts</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">Sync Accounts</li>
+                </ol>
+            </nav>
+        </div>
+        <!-- End Page Title -->
+
+        <section class="section profile">
+            <div class="row">
+
+
+                <div class="col-xl-8">
+                    <div class="card">
+                        <div class="card-body pt-3">
+                            <!-- Bordered Tabs -->
+                            <ul class="nav nav-tabs nav-tabs-bordered">
+                                <li class="nav-item">
+                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                                </li>
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-sync">Sync Accounts</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content pt-2">
+                                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                    <h5 class="card-title">About</h5>
+                                    <p class="small fst-italic" id="syncedAccountsInfo">Sync your bank accounts to manage your finances effectively.</p>
+                                </div>
+
+                                <div class="tab-pane fade profile-edit pt-3" id="profile-sync">
+                                    <!-- Sync Accounts Form -->
+                                    <form id="syncAccountsForm">
+                                        <div class="row mb-3">
+                                            <label for="bank" class="col-md-4 col-lg-3 col-form-label">Select Bank</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <select name="bank" id="bank" class="form-control">
+                               <option value=\"120001\"> 9mobile 9Payment Service Bank<option value=\"801\"> Abbey Mortgage Bank<option value=\"51204\"> Above Only MFB<option value=\"51312\"> Abulesoro MFB<option value=\"044\"> Access Bank<option value=\"063\"> Access Bank (Diamond)<option value=\"602\"> Accion Microfinance Bank<option value=\"50036\"> Ahmadu Bello University Microfinance Bank<option value=\"120004\"> Airtel Smartcash PSB<option value=\"51336\"> AKU Microfinance Bank<option value=\"035A\"> ALAT by WEMA<option value=\"090629\"> Amegy Microfinance Bank<option value=\"50926\"> Amju Unique MFB<option value=\"51341\"> AMPERSAND MICROFINANCE BANK<option value=\"50083\"> Aramoko MFB<option value=\"401\"> ASO Savings and Loans<option value=\"MFB50094\"> Astrapolaris MFB LTD<option value=\"51229\"> Bainescredit MFB<option value=\"50117\"> Banc Corp Microfinance Bank<option value=\"50931\"> Bowen Microfinance Bank<option value=\"FC40163\"> Branch International Financial Services Limited<option value=\"565\"> Carbon<option value=\"865\"> CASHCONNECT MFB<option value=\"50823\"> CEMCS Microfinance Bank<option value=\"50171\"> Chanelle Microfinance Bank Limited<option value=\"312\"> Chikum Microfinance bank<option value=\"023\"> Citibank Nigeria<option value=\"50910\"> Consumer Microfinance Bank<option value=\"50204\"> Corestep MFB<option value=\"559\"> Coronation Merchant Bank<option value=\"FC40128\"> County Finance Limited<option value=\"51297\"> Crescent MFB<option value=\"50162\"> Dot Microfinance Bank<option value=\"050\"> Ecobank Nigeria<option value=\"50263\"> Ekimogun MFB<option value=\"098\"> Ekondo Microfinance Bank<option value=\"50126\"> Eyowo<option value=\"51318\"> Fairmoney Microfinance Bank<option value=\"070\"> Fidelity Bank<option value=\"51314\"> Firmus MFB<option value=\"011\"> First Bank of Nigeria<option value=\"214\"> First City Monument Bank<option value=\"413\"> FirstTrust Mortgage Bank Nigeria<option value=\"50315\"> FLOURISH MFB<option value=\"501\"> FSDH Merchant Bank Limited<option value=\"812\"> Gateway Mortgage Bank LTD<option value=\"00103\"> Globus Bank<option value=\"100022\"> GoMoney<option value=\"50739\"> Goodnews Microfinance Bank<option value=\"562\"> Greenwich Merchant Bank<option value=\"058\"> Guaranty Trust Bank<option value=\"51251\"> Hackman Microfinance Bank<option value=\"50383\"> Hasal Microfinance Bank<option value=\"030\"> Heritage Bank<option value=\"120002\"> HopePSB<option value=\"51244\"> Ibile Microfinance Bank<option value=\"50439\"> Ikoyi Osun MFB<option value=\"50442\"> Ilaro Poly Microfinance Bank<option value=\"50453\"> Imowo MFB<option value=\"50457\"> Infinity MFB<option value=\"301\"> Jaiz Bank<option value=\"50502\"> Kadpoly MFB<option value=\"082\"> Keystone Bank<option value=\"50200\"> Kredi Money MFB LTD<option value=\"50211\"> Kuda Bank<option value=\"90052\"> Lagos Building Investment Company Plc.<option value=\"50549\"> Links MFB<option value=\"031\"> Living Trust Mortgage Bank<option value=\"303\"> Lotus Bank<option value=\"50563\"> Mayfair MFB<option value=\"50304\"> Mint MFB<option value=\"50515\"> Moniepoint MFB<option value=\"120003\"> MTN Momo PSB<option value=\"107\"> Optimus Bank Limited<option value=\"100002\"> Paga<option value=\"999991\"> PalmPay<option value=\"104\"> Parallex Bank<option value=\"311\"> Parkway - ReadyCash<option value=\"999992\"> Paycom<option value=\"50743\"> Peace Microfinance Bank<option value=\"51146\"> Personal Trust MFB<option value=\"50746\"> Petra Mircofinance Bank Plc<option value=\"268\"> Platinum Mortgage Bank<option value=\"076\"> Polaris Bank<option value=\"50864\"> Polyunwana MFB<option value=\"105\"> PremiumTrust Bank<option value=\"101\"> Providus Bank<option value=\"51293\"> QuickFund MFB<option value=\"502\"> Rand Merchant Bank<option value=\"90067\"> Refuge Mortgage Bank<option value=\"51286\"> Rigo Microfinance Bank Limited<option value=\"50767\"> ROCKSHIELD MICROFINANCE BANK<option value=\"125\"> Rubies MFB<option value=\"51113\"> Safe Haven MFB<option value=\"951113\"> Safe Haven Microfinance Bank Limited<option value=\"40165\"> SAGE GREY FINANCE LIMITED<option value=\"50582\"> Shield MFB<option value=\"51062\"> Solid Allianze MFB<option value=\"50800\"> Solid Rock MFB<option value=\"51310\"> Sparkle Microfinance Bank<option value=\"221\"> Stanbic IBTC Bank<option value=\"068\"> Standard Chartered Bank<option value=\"51253\"> Stellas MFB<option value=\"232\"> Sterling Bank<option value=\"100\"> Suntrust Bank<option value=\"50968\"> Supreme MFB<option value=\"302\"> TAJ Bank<option value=\"090560\"> Tanadi Microfinance Bank<option value=\"51269\"> Tangerine Money<option value=\"51211\"> TCF MFB<option value=\"102\"> Titan Bank<option value=\"100039\"> Titan Paystack<option value=\"50840\"> U&C Microfinance Bank Ltd (U AND C MFB)<option value=\"MFB51322\"> Uhuru MFB<option value=\"50870\"> Unaab Microfinance Bank Limited<option value=\"50871\"> Unical MFB<option value=\"51316\"> Unilag Microfinance Bank<option value=\"032\"> Union Bank of Nigeria<option value=\"033\"> United Bank For Africa<option value=\"215\"> Unity Bank<option value=\"566\"> VFD Microfinance Bank Limited<option value=\"51355\"> Waya Microfinance Bank<option value=\"035\"> Wema Bank<option value=\"057\"> Zenith Bank
+                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="accountNumber" class="col-md-4 col-lg-3 col-form-label">Account Number</label>
+                                            <div class="col-md-8 col-lg-9">
+                                                <input type="text" class="form-control" id="accountNumber" name="accountNumber" placeholder="Enter account number">
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-success">Sync Accounts</button>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Sync Process Steps -->
+                <div class="mt-4">
+                    <h5 class="card-title">Sync Process</h5>
+                    <ol>
+                        <li>Log in to your account.</li>
+                        <li>Select the accounts you want to sync from the dropdown.</li>
+                        <li>Click the "Sync Accounts" button to initiate the sync process.</li>
+                        <li>Wait for the process to complete.</li>
+                        <li>Your accounts are now synced and ready to use.</li>
+                    </ol>
+                </div>
+                <!-- End Sync Process Steps -->
+
+            </div>
+
+            </div>
+            <!-- End Bordered Tabs -->
+
+            </div>
+            </div>
+
+            </div>
+            </div>
+        </section>
+
+    </main>
+    <!-- End #main -->
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Traq</span></strong>. All Rights Reserved
+        </div>
+
+    </footer>
+    <!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="assets/vendor/echarts/echarts.min.js"></script>
+    <script src="assets/vendor/quill/quill.min.js"></script>
+    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

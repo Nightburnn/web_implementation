@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Traq.</title>
+    <title>Traq</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -14,219 +14,724 @@
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
+
 
 </head>
 
 <body>
 
     <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top d-flex align-items-center">
-        <div class="container d-flex justify-content-between align-items-center">
+    <header id="header" class="header fixed-top d-flex align-items-center">
 
-            <div class="logo">
-                <h1><a href="index.html">Traq.</a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-            </div>
-
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li><a class="active " href="index.html">Home</a></li>
-                    <li><a href="./pages/login.html">Login</a></li>
-
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav>
-            <!-- .navbar -->
-
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="index.html" class="logo d-flex align-items-center">
+                <img src="assets/img/logo.png" alt="">
+                <span class="d-none d-lg-block">Traq.</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
         </div>
+        <!-- End Logo -->
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="#">
+                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+        </div>
+        <!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                    </a>
+                </li>
+                <!-- End Search Icon-->
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge bg-primary badge-number">4</span>
+                    </a>
+                    <!-- End Notification Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                        <li class="dropdown-header">
+                            You have 4 new notifications
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-exclamation-circle text-warning"></i>
+                            <div>
+                                <h4>Lorem Ipsum</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>30 min. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-x-circle text-danger"></i>
+                            <div>
+                                <h4>Atque rerum nesciunt</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>1 hr. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-check-circle text-success"></i>
+                            <div>
+                                <h4>Sit rerum fuga</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>2 hrs. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-info-circle text-primary"></i>
+                            <div>
+                                <h4>Dicta reprehenderit</h4>
+                                <p>Quae dolorem earum veritatis oditseno</p>
+                                <p>4 hrs. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-footer">
+                            <a href="#">Show all notifications</a>
+                        </li>
+
+                    </ul>
+                    <!-- End Notification Dropdown Items -->
+
+                </li>
+                <!-- End Notification Nav -->
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-chat-left-text"></i>
+                        <span class="badge bg-success badge-number">3</span>
+                    </a>
+                    <!-- End Messages Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                        <li class="dropdown-header">
+                            You have 3 new messages
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>Maria Hudson</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>4 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>Anna Nelson</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>6 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>David Muldon</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>8 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="dropdown-footer">
+                            <a href="#">Show all messages</a>
+                        </li>
+
+                    </ul>
+                    <!-- End Messages Dropdown Items -->
+
+                </li>
+                <!-- End Messages Nav -->
+
+                <li class="nav-item dropdown pe-3">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">Paul</span>
+                    </a>
+                    <!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>Kevin Anderson</h6>
+                            <span>Web Designer</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="sync.html">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="sync.html">
+                                <i class="bi bi-gear"></i>
+                                <span>Account Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="Transactions.html">
+                                <i class="bi bi-question-circle"></i>
+                                <span>Need Help?</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <!-- End Profile Dropdown Items -->
+                </li>
+                <!-- End Profile Nav -->
+
+            </ul>
+        </nav>
+        <!-- End Icons Navigation -->
+
     </header>
     <!-- End Header -->
 
-    <!-- ======= Hero Section ======= -->
-    <section class="hero-section" id="hero">
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
 
-        <div class="wave">
+        <ul class="sidebar-nav" id="sidebar-nav">
 
-            <svg width="100%" height="355px" viewBox="0 0 1920 355" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <g id="Apple-TV" transform="translate(0.000000, -402.000000)" fill="#FFFFFF">
-            <path d="M0,439.134243 C175.04074,464.89273 327.944386,477.771974 458.710937,477.771974 C654.860765,477.771974 870.645295,442.632362 1205.9828,410.192501 C1429.54114,388.565926 1667.54687,411.092417 1920,477.771974 L1920,757 L1017.15166,757 L0,757 L0,439.134243 Z" id="Path"></path>
-          </g>
-        </g>
-      </svg>
+            <li class="nav-item">
+                <a class="nav-link " href="index.html">
+                    <i class="bi bi-grid"></i>
+                    <span>Overview</span>
+                </a>
+            </li>
+            <!-- End Dashboard Nav -->
 
+
+
+            <li class="nav-heading">Pages</li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="sync.html">
+                    <i class="bi bi-person"></i>
+                    <span>Sync Accounts</span>
+                </a>
+            </li>
+            <!-- End Profile Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="Transactions.html">
+                    <i class="bi bi-question-circle"></i>
+                    <span>Transactions</span>
+                </a>
+            </li>
+            <!-- End F.A.Q Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="Budget.html">
+                    <i class="bi bi-envelope"></i>
+                    <span>Budget</span>
+                </a>
+            </li>
+            <!-- End Contact Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="Debts.html">
+                    <i class="bi bi-card-list"></i>
+                    <span>Debts</span>
+                </a>
+            </li>
+            <!-- End Register Page Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="../login.html">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+            <!-- End Login Page Nav -->
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+            <h1>Dashboard</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </nav>
         </div>
+        <!-- End Page Title -->
 
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-12 hero-text-image">
+        <section class="section dashboard">
+            <div class="row">
+
+                <!-- Left side columns -->
+                <div class="col-lg-8">
                     <div class="row">
-                        <div class="col-lg-8 text-center text-lg-start">
-                            <h1 data-aos="fade-right">Budget from anywhere</h1>
-                            <p class="mb-5" data-aos="fade-right" data-aos-delay="100">Empower Your Finances, Track Your Expenses - Budgeting Made Simple, Living Within Your Means!</p>
-                            <p data-aos="fade-right" data-aos-delay="200" data-aos-offset="-500"><a href="./pages/signup.html" class="btn btn-outline-white">Sign up</a></p>
+
+                        <!-- Sales Card -->
+                        <div class="col-xxl-4 col-md-6">
+                            <div class="card info-card sales-card">
+
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Balance</h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i class="bi bi-wallet2"></i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>₦2,500</h6>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="col-lg-4 iphone-wrap">
-                            <img src="assets/img/phone_1.png" alt="Image" class="phone-1" data-aos="fade-right">
-                            <img src="assets/img/phone_2.png" alt="Image" class="phone-2" data-aos="fade-right" data-aos-delay="200">
+                        <!-- End Sales Card -->
+
+                        <!-- Revenue Card -->
+                        <div class="col-xxl-4 col-md-6">
+                            <div class="card info-card revenue-card">
+
+
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Expenses Summary <span>| This Month</span></h5>
+
+                                    <div class="d-flex align-items-center">
+                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                            <i>&#x20A6</i>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>₦3,264</h6>
+                                            <span class="text-success small pt-1 fw-bold">8% Increase</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
+                        <!-- End Revenue Card -->
+
+
+                        <!-- Reports -->
+                        <div class="col-12">
+                            <div class="card">
+
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Balance Trends</h5>
+
+                                    <!-- Line Chart -->
+                                    <div id="reportsChart"></div>
+                                    <script>
+                                        document.addEventListener("DOMContentLoaded", () => {
+                                            new ApexCharts(document.querySelector("#reportsChart"), {
+                                                series: [{
+                                                    name: 'Income',
+                                                    data: [250000, 280000, 300000, 270000, 320000, 350000], // Sample income data in Naira
+                                                }, {
+                                                    name: 'Expenses',
+                                                    data: [180000, 200000, 220000, 210000, 240000, 250000], // Sample expense data in Naira
+                                                }, {
+                                                    name: 'Savings',
+                                                    data: [70000, 80000, 80000, 60000, 80000, 100000], // Sample savings data in Naira
+                                                }],
+                                                chart: {
+                                                    height: 350,
+                                                    type: 'area',
+                                                    toolbar: {
+                                                        show: false
+                                                    },
+                                                },
+                                                markers: {
+                                                    size: 4
+                                                },
+                                                colors: ['#4154f1', '#2eca6a', '#ff771d'],
+                                                fill: {
+                                                    type: "gradient",
+                                                    gradient: {
+                                                        shadeIntensity: 1,
+                                                        opacityFrom: 0.3,
+                                                        opacityTo: 0.4,
+                                                        stops: [0, 90, 100]
+                                                    }
+                                                },
+                                                dataLabels: {
+                                                    enabled: false
+                                                },
+                                                stroke: {
+                                                    curve: 'smooth',
+                                                    width: 2
+                                                },
+                                                xaxis: {
+                                                    type: 'datetime',
+                                                    categories: ["2023-09-19", "2023-10-19", "2023-11-19", "2023-12-19", "2024-01-19", "2024-02-19"], // Adjusted for the past 6 months
+                                                    labels: {
+                                                        format: 'MMM yy', // Format the x-axis labels as month and year
+                                                    }
+                                                },
+                                                yaxis: {
+                                                    labels: {
+                                                        formatter: function(value) {
+                                                            return '₦' + value.toLocaleString(); // Format y-axis labels as currency in Naira
+                                                        }
+                                                    }
+                                                },
+                                                tooltip: {
+                                                    x: {
+                                                        format: 'MMM yy' // Format tooltip date as month and year
+                                                    },
+                                                    y: {
+                                                        formatter: function(value) {
+                                                            return '₦' + value.toLocaleString(); // Format tooltip value as currency in Naira
+                                                        }
+                                                    }
+                                                }
+                                            }).render();
+                                        });
+                                    </script>
+
+
+                                    <!-- End Line Chart -->
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- End Reports -->
+
+
                     </div>
                 </div>
-            </div>s
+                <!-- End Left side columns -->
+
+                <!-- Right side columns -->
+                <div class="col-lg-4">
+
+                    <!-- Recent Activity -->
+                    <div class="card">
+
+
+                        <div class="card-body">
+                            <h5 class="card-title">Recent Transactions </h5>
+
+                            <div class="activity">
+
+                                <div class="activity-item d-flex">
+                                    <div class="activite-label">32 min ago</div>
+                                    <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                                    <div class="activity-content">
+                                        Payment received from John <a href="#" class="fw-bold text-dark">(₦100)</a>
+                                    </div>
+                                </div>
+                                <!-- End activity item-->
+
+                                <div class="activity-item d-flex">
+                                    <div class="activite-label">56 min ago</div>
+                                    <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
+                                    <div class="activity-content">
+                                        ATM withdrawal - ₦50
+                                    </div>
+                                </div>
+                                <!-- End activity item-->
+
+                                <div class="activity-item d-flex">
+                                    <div class="activite-label">2 hrs ago</div>
+                                    <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
+                                    <div class="activity-content">
+                                        Purchase at XYZ Store - ₦75
+                                    </div>
+                                </div>
+                                <!-- End activity item-->
+
+                                <div class="activity-item d-flex">
+                                    <div class="activite-label">1 day ago</div>
+                                    <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
+                                    <div class="activity-content">
+                                        Online transfer to Savings Account - ₦200
+                                    </div>
+                                </div>
+                                <!-- End activity item-->
+
+                                <div class="activity-item d-flex">
+                                    <div class="activite-label">2 days ago</div>
+                                    <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
+                                    <div class="activity-content">
+                                        Utility bill payment - ₦150
+                                    </div>
+                                </div>
+                                <!-- End activity item-->
+
+                                <div class="activity-item d-flex">
+                                    <div class="activite-label">4 weeks ago</div>
+                                    <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
+                                    <div class="activity-content">
+                                        Credit card payment - ₦500
+                                    </div>
+                                </div>
+                                <!-- End activity item-->
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- End Recent Activity -->
+
+
+
+                </div>
+                <!-- End Right side columns -->
+
+            </div>
+        </section>
+        <!-- Budget Report -->
+        <div class="card">
+
+            <div class="card-body pb-0">
+                <h5 class="card-title">Expense Budget Report <span>| This Month</span></h5>
+
+                <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                        var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
+                            legend: {
+                                data: ['Planned Expenses', 'Actual Expenses']
+                            },
+                            radar: {
+                                indicator: [{
+                                    name: 'Groceries',
+                                    max: 5000 // Maximum planned expenses for groceries
+                                }, {
+                                    name: 'Utilities',
+                                    max: 8000 // Maximum planned expenses for utilities
+                                }, {
+                                    name: 'Transportation',
+                                    max: 6000 // Maximum planned expenses for transportation
+                                }, {
+                                    name: 'Entertainment',
+                                    max: 3000 // Maximum planned expenses for entertainment
+                                }, {
+                                    name: 'Housing',
+                                    max: 10000 // Maximum planned expenses for housing
+                                }, {
+                                    name: 'Healthcare',
+                                    max: 4000 // Maximum planned expenses for healthcare
+                                }]
+                            },
+                            series: [{
+                                name: 'Budget vs spending',
+                                type: 'radar',
+                                data: [{
+                                    value: [4500, 7500, 5000, 2500, 9500, 3000], // Planned expenses data
+                                    name: 'Planned Expenses'
+                                }, {
+                                    value: [4800, 6000, 5200, 2600, 9800, 3200], // Actual expenses data
+                                    name: 'Actual Expenses'
+                                }]
+                            }]
+                        });
+                    });
+                </script>
+
+            </div>
         </div>
+        <!-- End Budget Report -->
 
-    </section>
-    <!-- End Hero -->
 
-    <main id="main">
+        <!-- News & Updates Traffic -->
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body pb-0">
+                    <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
 
-        <!-- ======= Home Section ======= -->
-        <section class="section">
-            <div class="container">
-
-                <div class="row justify-content-center text-center mb-5">
-                    <div class="col-md-5" data-aos="fade-up">
-                        <h2 class="section-heading">Trakq your budget </h2>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="">
-                        <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <i class="bi bi-people"></i>
-                            </div>
-                            <h3 class="mb-3">User-Friendly Interface</h3>
-                            <p>Clear visualizations, charts, and graphs can also enhance the user experience, providing a quick overview of their financial situation.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <i class="bi bi-exclamation-triangle"></i>
-                            </div>
-                            <h3 class="mb-3">Real-Time Tracking and Alerts</h3>
-                            <p>Automated alerts for approaching budget limits, irregular spending patterns, or upcoming bills</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="feature-1 text-center">
-                            <div class="wrap-icon icon-1">
-                                <i class="bi bi-bar-chart"></i>
-                            </div>
-                            <h3 class="mb-3">Comprehensive Reporting</h3>
-                            <p>Detailed insights can empower users to make informed financial decisions and identify areas for potential savings</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="section">
-
-            <div class="container">
-                <div class="row justify-content-center text-center mb-5" data-aos="fade">
-                    <div class="col-md-6 mb-5">
-                        <img src="https://static.vecteezy.com/system/resources/previews/015/252/505/original/man-calculating-project-budget-illustration-concept-a-flat-illustration-isolated-on-white-background-vector.jpg" alt="Image" class="img-fluid">
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="step">
-                            <span class="number">01</span>
-                            <h3>Sign Up</h3>
-                            <p>Get started by creating your account. Signing up is quick and easy, opening the door to personalized budgeting..</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="step">
-                            <span class="number">02</span>
-                            <h3>Create Profile</h3>
-                            <p>Customize your financial profile. Link your banks, set budget limits, and tailor your categories for a personalized budgeting experience.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="step">
-                            <span class="number">03</span>
-                            <h3>Enjoy the app</h3>
-                            <p>Start tracking your expenses, monitoring your budget, and gaining control over your finances.</p>
-                        </div>
+                    <div class="news" id="news-container">
+                        <!-- News items will be dynamically added here -->
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- End News & Updates -->
 
-        </section>
+        <script>
+            async function fetchNews() {
+                const appId = 'VekBZg9V';
+                const clientId = 'dj0yJmk9Z0JsTTBQd1JFcGx2JmQ9WVdrOVZtVnJRbHBuT1ZZbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWJj';
+                const clientSecret = '08237ba0495bc78c1a682b4e0472a6bd15b93286';
 
-        <section class="section">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-4 me-auto">
-                        <h2 class="mb-4">Seamlessly Communicate</h2>
-                        <p class="mb-4">Effortlessly manage your finances with our user-friendly budgeting app. Seamlessly communicate with your money, ensuring you stay in control of your spending and savings.</p>
-                        <p><a href="./pages/signup.html" class="btn btn-primary">Sign Up Now</a></p>
-                    </div>
-                    <div class="col-md-6" data-aos="fade-left">
-                        <img src="https://cdni.iconscout.com/illustration/premium/thumb/budget-4468676-3748918.png" alt="Image" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-        </section>
+                try {
+                    const response = await fetch(`https://apidojo-yahoo-finance-v1.p.rapidapi.com/news/v2/list?category=generalnews&region=NG`, {
+                        method: 'GET',
+                        headers: {
+                            'x-rapidapi-key': clientId,
+                            'x-rapidapi-host': 'apidojo-yahoo-finance-v1.p.rapidapi.com',
+                            'x-app-id': appId,
+                            'x-client-id': clientId,
+                            'x-client-secret': clientSecret
+                        }
+                    });
 
-        <section class="section">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-4 ms-auto order-2">
-                        <h2 class="mb-4">Gather Feedback</h2>
-                        <p class="mb-4">Collect valuable insights on your spending habits. Our platform makes it easy to gather feedback and track your financial progress. Make informed decisions to achieve your financial goals.</p>
-                        <p><a href="./pages/signup.html" class="btn btn-primary">Sign Up Now</a></p>
-                    </div>
-                    <div class="col-md-6" data-aos="fade-right">
-                        <img src="assets/img/undraw_svg_3.svg" alt="Image" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- ======= CTA Section ======= -->
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch news: ' + response.status);
+                    }
+
+                    const data = await response.json();
+                    return data;
+                } catch (error) {
+                    console.error('Error fetching news:', error);
+                    throw error; // Rethrow the error to propagate it to the caller
+                }
+            }
+
+            function renderNews(news) {
+                const newsContainer = document.getElementById('news-container');
+                if (!news || !news.items || !Array.isArray(news.items)) {
+                    console.error('Invalid news data:', news);
+                    return;
+                }
+                news.items.forEach(item => {
+                    const postItem = document.createElement('div');
+                    postItem.classList.add('post-item', 'clearfix');
+                    postItem.innerHTML = `
+        <img src="${item.image}" alt="${item.title}">
+        <h4><a href="${item.link}" target="_blank">${item.title}</a></h4>
+        <p>${item.summary}</p>
+    `;
+                    newsContainer.appendChild(postItem);
+                });
+            }
+
+            window.addEventListener('load', async() => {
+                try {
+                    const news = await fetchNews();
+                    renderNews(news);
+                } catch (error) {
+                    console.error('Error handling news:', error);
+                }
+            });
+        </script>
+
 
     </main>
     <!-- End #main -->
 
-    <!-- ======= Footer ======= -->
 
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>Traq</span></strong>. All Rights Reserved
+        </div>
+
+    </footer>
+    <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="assets/vendor/echarts/echarts.min.js"></script>
+    <script src="assets/vendor/quill/quill.min.js"></script>
+    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
 
 </body>
-<script src="darkLight.js"></script>
-
-<script type="module">
-    // Import the functions you need from the SDKs you need import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"; import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js"; // TODO:
-    Add SDKs for Firebase products that you want to use // https://firebase.google.com/docs/web/setup#available-libraries // Your web app's Firebase configuration // For Firebase JS SDK v7.20.0 and later, measurementId is optional const firebaseConfig
-    = { apiKey: "AIzaSyDw9NI0Ah23onxLMpmMf8P5q4DmhwrhkRU", authDomain: "traq-8ef85.firebaseapp.com", projectId: "traq-8ef85", storageBucket: "traq-8ef85.appspot.com", messagingSenderId: "899548805574", appId: "1:899548805574:web:530b750de8ae29cbfb5ac7",
-    measurementId: "G-2PYTNVF9G9" }; // Initialize Firebase const app = initializeApp(firebaseConfig); const analytics = getAnalytics(app);
-</script>
 
 </html>

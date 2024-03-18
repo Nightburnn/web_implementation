@@ -15,7 +15,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
     if (response.ok) {
       
-      showSuccessAlert('Login successful!', '/Dashboard/index.html');
+      showSuccessAlert('Login successful!', '../Dashboard/index.html');
       // Perform additional actions after successful login if needed
     } else {
       const errorData = await response.json();

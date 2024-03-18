@@ -39,18 +39,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Serve static files from the 'frontend' folder
-app.use(express.static(join(__dirname, 'frontend')));
-console.log(join(__dirname, 'frontend'));
-
 
 // Define your API routes
 app.use('/api/users', userRoutes);
 
-// Catch-all route to serve the 'index.html'
-app.get('*', (req, res) => {
-  res.sendFile(join(__dirname, 'frontend', 'index.html'));
-});
 
 // Error handling middleware
 app.use(errorHandler);

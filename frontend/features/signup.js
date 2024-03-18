@@ -8,7 +8,7 @@ document
     const password = document.getElementById("password").value;
 
     try {
-      const response = await fetch("http://localhost:5000/api/users/register", {
+      const response = await fetch("https://traq-986l.onrender.com/api/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

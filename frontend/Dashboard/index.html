@@ -443,60 +443,39 @@
         <!-- End News & Updates -->
 
         <script>
-            async function fetchNews() {
-                const appId = 'VekBZg9V';
-                const clientId = 'dj0yJmk9Z0JsTTBQd1JFcGx2JmQ9WVdrOVZtVnJRbHBuT1ZZbWNHbzlNQT09JnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWJj';
-                const clientSecret = '08237ba0495bc78c1a682b4e0472a6bd15b93286';
+            async function fetchFinancialNews() {
+                const apiKey = 'XA8O0Lx92xjhj8M5ho6jEEHKfN1lwO86';
+                const apiUrl = `https://financialmodelingprep.com/api/v3/stock_news?tickers=AAPL&apikey=${apiKey}`;
 
                 try {
-                    const response = await fetch(`https://apidojo-yahoo-finance-v1.p.rapidapi.com/news/v2/list?category=generalnews&region=NG`, {
-                        method: 'GET',
-                        headers: {
-                            'x-rapidapi-key': clientId,
-                            'x-rapidapi-host': 'apidojo-yahoo-finance-v1.p.rapidapi.com',
-                            'x-app-id': appId,
-                            'x-client-id': clientId,
-                            'x-client-secret': clientSecret
-                        }
-                    });
-
+                    const response = await fetch(apiUrl);
                     if (!response.ok) {
-                        throw new Error('Failed to fetch news: ' + response.status);
+                        throw new Error('Failed to fetch financial news');
                     }
-
                     const data = await response.json();
                     return data;
                 } catch (error) {
-                    console.error('Error fetching news:', error);
-                    throw error; // Rethrow the error to propagate it to the caller
+                    console.error('Error fetching financial news:', error);
                 }
             }
 
-            function renderNews(news) {
+            async function renderFinancialNews() {
                 const newsContainer = document.getElementById('news-container');
-                if (!news || !news.items || !Array.isArray(news.items)) {
-                    console.error('Invalid news data:', news);
-                    return;
-                }
-                news.items.forEach(item => {
-                    const postItem = document.createElement('div');
-                    postItem.classList.add('post-item', 'clearfix');
-                    postItem.innerHTML = `
-        <img src="${item.image}" alt="${item.title}">
-        <h4><a href="${item.link}" target="_blank">${item.title}</a></h4>
-        <p>${item.summary}</p>
-    `;
-                    newsContainer.appendChild(postItem);
+                const news = await fetchFinancialNews();
+                news.forEach(item => {
+                    const newsItem = document.createElement('div');
+                    newsItem.classList.add('news-item');
+                    newsItem.innerHTML = `
+            <h3>${item.title}</h3>
+            <p>${item.text}</p>
+            <a href="${item.url}" target="_blank">Read more</a>
+        `;
+                    newsContainer.appendChild(newsItem);
                 });
             }
 
-            window.addEventListener('load', async() => {
-                try {
-                    const news = await fetchNews();
-                    renderNews(news);
-                } catch (error) {
-                    console.error('Error handling news:', error);
-                }
+            window.addEventListener('load', () => {
+                renderFinancialNews();
             });
         </script>
 

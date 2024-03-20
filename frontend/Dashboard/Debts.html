@@ -174,24 +174,13 @@
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>2024-03-15</td>
-                                                    <td>500</td>
-                                                    <td>John Doe</td>
-                                                    <td>Ongoing</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2024-03-12</td>
-                                                    <td>200</td>
-                                                    <td>Jane Smith</td>
-                                                    <td>Ongoing</td>
-                                                </tr>
+                                            <tbody id="activeDebtsBody">
+                                                <!-- Data will be populated here -->
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-
+        
                                 <!-- Settled Debts Tab -->
                                 <div class="tab-pane fade" id="settledDebts">
                                     <h5 class="card-title">Settled Debts</h5>
@@ -206,13 +195,8 @@
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>2024-03-10</td>
-                                                    <td>300</td>
-                                                    <td>Alice Johnson</td>
-                                                    <td>Settled</td>
-                                                </tr>
+                                            <tbody id="settledDebtsBody">
+                                                <!-- Data will be populated here -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -221,17 +205,34 @@
                         </div>
                     </div>
                 </div>
-
+        
                 <!-- Debt Management Process Steps -->
                 <div class="col-xl-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Debt Management Process</h5>
-                            <ol>
-                                <li>View active and settled debts using the tabs.</li>
-                                <li>Manage each debt individually by interacting with the respective entries.</li>
-                                <li>Mark debts as settled once they are paid off.</li>
-                            </ol>
+                            <form id="debtForm">
+                                <div class="mb-3">
+                                    <label for="debtDate" class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="debtDate" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="debtAmount" class="form-label">Amount (₦)</label>
+                                    <input type="number" class="form-control" id="debtAmount" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="debtFrom" class="form-label">From</label>
+                                    <input type="text" class="form-control" id="debtFrom" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="debtStatus" class="form-label">Status</label>
+                                    <select class="form-select" id="debtStatus" required>
+                                        <option value="Ongoing">Ongoing</option>
+                                        <option value="Settled">Settled</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary" style="background-color: #008000;">Add Debt</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -268,6 +269,94 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script>
+     // Load saved debt data when the page loads
+window.addEventListener('load', function() {
+    var savedActiveDebts = localStorage.getItem('activeDebts');
+    if (savedActiveDebts) {
+        document.getElementById('activeDebtsBody').innerHTML = savedActiveDebts;
+    }
+
+    var savedSettledDebts = localStorage.getItem('settledDebts');
+    if (savedSettledDebts) {
+        document.getElementById('settledDebtsBody').innerHTML = savedSettledDebts;
+    }
+});
+
+// Function to save debt data to local storage
+function saveDebtData() {
+    var activeDebtsData = document.getElementById('activeDebtsBody').innerHTML;
+    localStorage.setItem('activeDebts', activeDebtsData);
+
+    var settledDebtsData = document.getElementById('settledDebtsBody').innerHTML;
+    localStorage.setItem('settledDebts', settledDebtsData);
+}
+
+document.getElementById('debtForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    // Get input values
+    var date = document.getElementById('debtDate').value;
+    var amount = document.getElementById('debtAmount').value;
+    var from = document.getElementById('debtFrom').value;
+    var status = document.getElementById('debtStatus').value;
+    
+    // Create table row
+    var newRow = '<tr><td>' + date + '</td><td>' + amount + '</td><td>' + from + '</td><td>' + status + '</td></tr>';
+    
+    // Add row to the appropriate table
+    if (status === 'Ongoing') {
+        document.getElementById('activeDebtsBody').innerHTML += newRow;
+    } else {
+        document.getElementById('settledDebtsBody').innerHTML += newRow;
+    }
+    
+    // Reset form
+    document.getElementById('debtForm').reset();
+
+    // Save debt data to local storage
+    saveDebtData();
+
+    // Update select option in the table
+    updateSelectOption();
+});
+
+// Function to update select option in the table
+function updateSelectOption() {
+    var selectOption = '<select class="form-select status-select" data-row-id="activeDebt1"><option value="Ongoing">Ongoing</option><option value="Settled">Settled</option></select>';
+    var table = document.getElementById('activeDebtsBody');
+    var lastRow = table.rows[table.rows.length - 1];
+    lastRow.cells[3].innerHTML = selectOption;
+    
+    // Add event listener for select change
+    lastRow.cells[3].querySelector('.status-select').addEventListener('change', function(event) {
+        var newStatus = event.target.value;
+        var rowId = lastRow.id;
+        
+        // Move the row to the appropriate table
+        if (newStatus === 'Settled') {
+            document.getElementById('settledDebtsBody').appendChild(lastRow);
+        } else {
+            document.getElementById('activeDebtsBody').appendChild(lastRow);
+        }
+        
+        // Update status in the row
+        changeStatus(rowId, newStatus);
+
+        // Save debt data to local storage after status change
+        saveDebtData();
+    });
+}
+
+// Function to handle status change
+function changeStatus(rowId, newStatus) {
+    var row = document.getElementById(rowId);
+    var cells = row.getElementsByTagName('td');
+    // Update the status cell
+    cells[3].innerText = newStatus;
+}
+
+    </script>
 
 </body>
 

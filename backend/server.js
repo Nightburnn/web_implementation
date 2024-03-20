@@ -12,8 +12,10 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
 import userRoutes from './routes/user.js';
-const transactionController = require('./controllers/transactionController');
-const accountController = require('./controllers/accountController');
+import newsController from './controllers/newsController.js';
+import transactionController from './controllers/transactionController.js';
+import accountController from './controllers/accountController.js';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename); // Go up one level
 

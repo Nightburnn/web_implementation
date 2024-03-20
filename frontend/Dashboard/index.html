@@ -16,7 +16,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -440,51 +440,61 @@
     </div>
 </div>
 <!-- End News & Updates -->
-
 <script>
-    async function fetchFinancialNews() {
-        const apiKey = '11d23888c2ed4e509ed7932db1fb7e73'; // Replace 'YOUR_API_KEY' with your News API key
-        const apiUrl = 'https://newsapi.org/v2/top-headlines';
+    $(document).ready(function() {
+        // Function to fetch and display financial news
+        function displayFinancialNews() {
+            // URL of the Google News RSS feed for finance
+            var rssFeedUrl = "https://news.google.com/rss/topics/CAAqJAgKIh5DQkFTRUFvS0wyMHZNRE5mTlRFU0JYcHZHZ0pDWkFvQ1JDRS1nY2Mt?hl=en-IN&gl=IN&ceid=IN:en";
 
-        try {
-            const response = await fetch(`${apiUrl}?category=business&apiKey=${apiKey}`);
-            if (!response.ok) {
-                throw new Error('Failed to fetch financial news');
-            }
-            const data = await response.json();
-            return data.articles;
-        } catch (error) {
-            console.error('Error fetching financial news:', error);
-            throw error;
-        }
-    }
+            // Fetch the RSS feed
+            $.ajax({
+                url: rssFeedUrl,
+                method: "GET",
+                dataType: "xml",
+                success: function(data) {
+                    // Clear previous news items
+                    $("#news-container").empty();
 
-    function renderFinancialNews(news) {
-        const newsContainer = document.getElementById('news-container');
-        if (!news || !news.length) {
-            console.error('Invalid news data:', news);
-            return;
-        }
-        news.forEach(item => {
-            const newsItem = document.createElement('div');
-            newsItem.classList.add('news-item');
-            newsItem.innerHTML = `
-                <h6>${item.title}</h6>
-                <p>${item.publishedAt}</p>
-                <p>${item.description}</p>
-                <a href="${item.url}" target="_blank">Read more</a>
-            `;
-            newsContainer.appendChild(newsItem);
-        });
-    }
+                    // Parse the XML data
+                    $(data).find("item").each(function() {
+                        var title = $(this).find("title").text();
+                        var link = $(this).find("link").text();
+                        var pubDate = $(this).find("pubDate").text();
+                        var description = $(this).find("description").text();
+                        var image = $(this).find("media\\:content, content").attr("url");
 
-    window.addEventListener('load', async () => {
-        try {
-            const financialNews = await fetchFinancialNews();
-            renderFinancialNews(financialNews);
-        } catch (error) {
-            console.error('Error handling financial news:', error);
+                        // Construct HTML for the news item
+                        var newsItemHtml = `
+                            <div class="card mb-3">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="${image}" class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${title}</h5>
+                                            <p class="card-text">${description}</p>
+                                            <p class="card-text"><small class="text-muted">${pubDate}</small></p>
+                                            <a href="${link}" class="btn btn-primary" target="_blank">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        // Append the news item HTML to the container
+                        $("#news-container").append(newsItemHtml);
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error("Failed to fetch financial news:", error);
+                }
+            });
         }
+
+        // Display financial news when the page loads
+        displayFinancialNews();
     });
 </script>
 
@@ -512,7 +522,8 @@
     <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
     <script src="assets/vendor/tinymce/tinymce.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
     

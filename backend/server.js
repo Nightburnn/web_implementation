@@ -12,7 +12,8 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
 import userRoutes from './routes/user.js';
-
+const transactionController = require('./controllers/transactionController');
+const accountController = require('./controllers/accountController');
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename); // Go up one level
 
@@ -46,7 +47,19 @@ app.use('/api/users', userRoutes);
 app.get('/', (req, res) => {
   res.send('Hello from the server side!');
 });
+// Transaction Routes
+app.post('/api/transactions', transactionController.createTransaction);
+app.get('/api/transactions', transactionController.getAllTransactions);
+app.get('/api/transactions/:id', transactionController.getTransactionById);
+app.put('/api/transactions/:id', transactionController.updateTransaction);
+app.delete('/api/transactions/:id', transactionController.deleteTransaction);
 
+// Account Routes
+app.post('/api/accounts', accountController.createAccount);
+app.get('/api/accounts', accountController.getAllAccounts);
+app.get('/api/accounts/:id', accountController.getAccountById);
+app.put('/api/accounts/:id', accountController.updateAccount);
+app.delete('/api/accounts/:id', accountController.deleteAccount);
 // Error handling middleware
 app.use(errorHandler);
 

@@ -1,4 +1,4 @@
-const Transaction = require('../models/transactionModel');
+import transactionController from './controllers/transactionController.js';
 
 // Function to create a new transaction
 exports.createTransaction = async (req, res) => {

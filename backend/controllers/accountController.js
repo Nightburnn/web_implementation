@@ -1,4 +1,4 @@
-const Account = require('../models/accountModel');
+import Account from '../models/accountModel.js';
 
 // Function to create a new account
 exports.createAccount = async (req, res) => {

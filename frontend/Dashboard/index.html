@@ -16,7 +16,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -428,57 +428,17 @@
         <!-- End Budget Report -->
 
 
-        <!-- News & Updates Traffic -->
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body pb-0">
-                    <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
-
-                    <div class="news" id="news-container">
-                        <!-- News items will be dynamically added here -->
-                    </div>
-                </div>
+      <!-- HTML structure -->
+<div class="col-12">
+    <div class="card">
+        <div class="card-body pb-0">
+            <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
+            <div id="news-container" class="news">
+                <!-- News items will be dynamically added here -->
             </div>
         </div>
-        <!-- End News & Updates -->
-
-        <script>
-            async function fetchFinancialNews() {
-                const apiKey = 'XA8O0Lx92xjhj8M5ho6jEEHKfN1lwO86';
-                const apiUrl = `https://financialmodelingprep.com/api/v3/stock_news/AAPL?apikey=${apiKey}`;
-
-                try {
-                    const response = await fetch(apiUrl);
-                    if (!response.ok) {
-                        throw new Error('Failed to fetch financial news');
-                    }
-                    const data = await response.json();
-                    return data;
-                } catch (error) {
-                    console.error('Error fetching financial news:', error);
-                }
-            }
-
-            async function renderFinancialNews() {
-                const newsContainer = document.getElementById('news-container');
-                const news = await fetchFinancialNews();
-                news.forEach(item => {
-                    const newsItem = document.createElement('div');
-                    newsItem.classList.add('news-item');
-                    newsItem.innerHTML = `
-            <h3>${item.title}</h3>
-            <p>${item.text}</p>
-            <a href="${item.url}" target="_blank">Read more</a>
-        `;
-                    newsContainer.appendChild(newsItem);
-                });
-            }
-
-            window.addEventListener('load', () => {
-                renderFinancialNews();
-            });
-        </script>
-
+    </div>
+</div>
 
     </main>
     <!-- End #main -->
@@ -504,10 +464,12 @@
     <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
     <script src="assets/vendor/tinymce/tinymce.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-    <script src="../features/display.js"></script>
+    
 
 </body>
 

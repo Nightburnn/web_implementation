@@ -408,32 +408,57 @@
         accountNumberInput.addEventListener('input', updateSyncedAccountsInfo);
     }
 
-    // Call the function to populate Nigerian accounts dropdown
-    fetchBanksAndPopulateDropdown();
 
-    // Event listener for form submission
-    const syncAccountsForm = document.getElementById('syncAccountsForm');
-    syncAccountsForm.addEventListener('submit', async function(event) {
-        event.preventDefault();
+document.addEventListener("DOMContentLoaded", function() {
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/'; // Proxy server to bypass CORS
+    const apiUrl = 'https://money.cnn.com/services/api/v2/news/headlines/specials'; // CNN finance news API endpoint
 
-        const selectAccounts = document.getElementById('selectAccounts');
-        const accountNumber = '12345678910'; // Example account number
-        const bankCode = selectAccounts.value;
+    const newsContainer = document.getElementById("news-container");
 
+    // Function to fetch news from the API
+    async function fetchNews() {
         try {
-            // Fetch data using the API
-            const data = await fetchData(accountNumber, bankCode);
-
-            // Check if data is valid
-            if (data) {
-                console.log(data); // Log the fetched data
-            }
+            const response = await fetch(proxyUrl + apiUrl);
+            const data = await response.json();
+            return data;
         } catch (error) {
-            console.error('Error fetching account details:', error);
+            console.error('Error fetching news:', error);
+            return null;
         }
-    });
+    }
 
-    //6zt41TL2uZ9qvRfhPQ24DdcamhlGvLE7l8DyoEkDf9510580
+    // Function to display news
+    function displayNews(newsData) {
+        const headlines = newsData && newsData.result && newsData.result.headlines;
+        if (headlines && headlines.length > 0) {
+            const randomIndex = Math.floor(Math.random() * headlines.length);
+            const randomHeadline = headlines[randomIndex];
+            const postItem = document.createElement("div");
+            postItem.classList.add("post-item", "clearfix");
+            postItem.innerHTML = `
+                <h4><a href="${randomHeadline.url}">${randomHeadline.title}</a></h4>
+                <p>${randomHeadline.summary}</p>
+            `;
+            newsContainer.innerHTML = ''; // Clear previous content
+            newsContainer.appendChild(postItem);
+        }
+    }
+
+    // Function to update news every 10 seconds
+    async function updateNews() {
+        const newsData = await fetchNews();
+        if (newsData) {
+            displayNews(newsData);
+        }
+    }
+
+    // Initial display
+    updateNews();
+
+    // Set interval to update news every 10 seconds
+    setInterval(updateNews, 10000);
+});
+
     /**
      * Autoresize echart charts
      */

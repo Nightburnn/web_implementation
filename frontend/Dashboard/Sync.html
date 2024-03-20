@@ -170,13 +170,14 @@
 
                                 <div class="tab-pane fade profile-edit pt-3" id="profile-sync">
                                     <!-- Sync Accounts Form -->
+                                    <!-- Sync Accounts Form -->
                                     <form id="syncAccountsForm">
                                         <div class="row mb-3">
                                             <label for="bank" class="col-md-4 col-lg-3 col-form-label">Select Bank</label>
                                             <div class="col-md-8 col-lg-9">
                                                 <select name="bank" id="bank" class="form-control">
                                <option value=\"120001\"> 9mobile 9Payment Service Bank<option value=\"801\"> Abbey Mortgage Bank<option value=\"51204\"> Above Only MFB<option value=\"51312\"> Abulesoro MFB<option value=\"044\"> Access Bank<option value=\"063\"> Access Bank (Diamond)<option value=\"602\"> Accion Microfinance Bank<option value=\"50036\"> Ahmadu Bello University Microfinance Bank<option value=\"120004\"> Airtel Smartcash PSB<option value=\"51336\"> AKU Microfinance Bank<option value=\"035A\"> ALAT by WEMA<option value=\"090629\"> Amegy Microfinance Bank<option value=\"50926\"> Amju Unique MFB<option value=\"51341\"> AMPERSAND MICROFINANCE BANK<option value=\"50083\"> Aramoko MFB<option value=\"401\"> ASO Savings and Loans<option value=\"MFB50094\"> Astrapolaris MFB LTD<option value=\"51229\"> Bainescredit MFB<option value=\"50117\"> Banc Corp Microfinance Bank<option value=\"50931\"> Bowen Microfinance Bank<option value=\"FC40163\"> Branch International Financial Services Limited<option value=\"565\"> Carbon<option value=\"865\"> CASHCONNECT MFB<option value=\"50823\"> CEMCS Microfinance Bank<option value=\"50171\"> Chanelle Microfinance Bank Limited<option value=\"312\"> Chikum Microfinance bank<option value=\"023\"> Citibank Nigeria<option value=\"50910\"> Consumer Microfinance Bank<option value=\"50204\"> Corestep MFB<option value=\"559\"> Coronation Merchant Bank<option value=\"FC40128\"> County Finance Limited<option value=\"51297\"> Crescent MFB<option value=\"50162\"> Dot Microfinance Bank<option value=\"050\"> Ecobank Nigeria<option value=\"50263\"> Ekimogun MFB<option value=\"098\"> Ekondo Microfinance Bank<option value=\"50126\"> Eyowo<option value=\"51318\"> Fairmoney Microfinance Bank<option value=\"070\"> Fidelity Bank<option value=\"51314\"> Firmus MFB<option value=\"011\"> First Bank of Nigeria<option value=\"214\"> First City Monument Bank<option value=\"413\"> FirstTrust Mortgage Bank Nigeria<option value=\"50315\"> FLOURISH MFB<option value=\"501\"> FSDH Merchant Bank Limited<option value=\"812\"> Gateway Mortgage Bank LTD<option value=\"00103\"> Globus Bank<option value=\"100022\"> GoMoney<option value=\"50739\"> Goodnews Microfinance Bank<option value=\"562\"> Greenwich Merchant Bank<option value=\"058\"> Guaranty Trust Bank<option value=\"51251\"> Hackman Microfinance Bank<option value=\"50383\"> Hasal Microfinance Bank<option value=\"030\"> Heritage Bank<option value=\"120002\"> HopePSB<option value=\"51244\"> Ibile Microfinance Bank<option value=\"50439\"> Ikoyi Osun MFB<option value=\"50442\"> Ilaro Poly Microfinance Bank<option value=\"50453\"> Imowo MFB<option value=\"50457\"> Infinity MFB<option value=\"301\"> Jaiz Bank<option value=\"50502\"> Kadpoly MFB<option value=\"082\"> Keystone Bank<option value=\"50200\"> Kredi Money MFB LTD<option value=\"50211\"> Kuda Bank<option value=\"90052\"> Lagos Building Investment Company Plc.<option value=\"50549\"> Links MFB<option value=\"031\"> Living Trust Mortgage Bank<option value=\"303\"> Lotus Bank<option value=\"50563\"> Mayfair MFB<option value=\"50304\"> Mint MFB<option value=\"50515\"> Moniepoint MFB<option value=\"120003\"> MTN Momo PSB<option value=\"107\"> Optimus Bank Limited<option value=\"100002\"> Paga<option value=\"999991\"> PalmPay<option value=\"104\"> Parallex Bank<option value=\"311\"> Parkway - ReadyCash<option value=\"999992\"> Paycom<option value=\"50743\"> Peace Microfinance Bank<option value=\"51146\"> Personal Trust MFB<option value=\"50746\"> Petra Mircofinance Bank Plc<option value=\"268\"> Platinum Mortgage Bank<option value=\"076\"> Polaris Bank<option value=\"50864\"> Polyunwana MFB<option value=\"105\"> PremiumTrust Bank<option value=\"101\"> Providus Bank<option value=\"51293\"> QuickFund MFB<option value=\"502\"> Rand Merchant Bank<option value=\"90067\"> Refuge Mortgage Bank<option value=\"51286\"> Rigo Microfinance Bank Limited<option value=\"50767\"> ROCKSHIELD MICROFINANCE BANK<option value=\"125\"> Rubies MFB<option value=\"51113\"> Safe Haven MFB<option value=\"951113\"> Safe Haven Microfinance Bank Limited<option value=\"40165\"> SAGE GREY FINANCE LIMITED<option value=\"50582\"> Shield MFB<option value=\"51062\"> Solid Allianze MFB<option value=\"50800\"> Solid Rock MFB<option value=\"51310\"> Sparkle Microfinance Bank<option value=\"221\"> Stanbic IBTC Bank<option value=\"068\"> Standard Chartered Bank<option value=\"51253\"> Stellas MFB<option value=\"232\"> Sterling Bank<option value=\"100\"> Suntrust Bank<option value=\"50968\"> Supreme MFB<option value=\"302\"> TAJ Bank<option value=\"090560\"> Tanadi Microfinance Bank<option value=\"51269\"> Tangerine Money<option value=\"51211\"> TCF MFB<option value=\"102\"> Titan Bank<option value=\"100039\"> Titan Paystack<option value=\"50840\"> U&C Microfinance Bank Ltd (U AND C MFB)<option value=\"MFB51322\"> Uhuru MFB<option value=\"50870\"> Unaab Microfinance Bank Limited<option value=\"50871\"> Unical MFB<option value=\"51316\"> Unilag Microfinance Bank<option value=\"032\"> Union Bank of Nigeria<option value=\"033\"> United Bank For Africa<option value=\"215\"> Unity Bank<option value=\"566\"> VFD Microfinance Bank Limited<option value=\"51355\"> Waya Microfinance Bank<option value=\"035\"> Wema Bank<option value=\"057\"> Zenith Bank
-                                </select>
+              </select>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -186,43 +187,39 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-success">Sync Accounts</button>
-
+                                            <button type="button" class="btn btn-success" id="addAccountButton">Add Account</button>
+                                            <button type="button" class="btn btn-primary" id="syncAccountButton">Sync Accounts</button>
                                         </div>
                                     </form>
+                                    <!-- Added Accounts List -->
+                                    <div id="addedAccountsListContainer" class="mt-4">
+                                        <h5 class="card-title">Added Accounts</h5>
+                                        <ul id="addedAccountsList" class="list-unstyled"></ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-                <!-- Sync Process Steps -->
-                <div class="mt-4">
-                    <h5 class="card-title">Sync Process</h5>
-                    <ol>
-                        <li>Log in to your account.</li>
-                        <li>Select the accounts you want to sync from the dropdown.</li>
-                        <li>Click the "Sync Accounts" button to initiate the sync process.</li>
-                        <li>Wait for the process to complete.</li>
-                        <li>Your accounts are now synced and ready to use.</li>
-                    </ol>
-                </div>
-                <!-- End Sync Process Steps -->
-
+            </div>
+            <!-- Sync Process Steps -->
+            <div class="mt-4">
+                <h5 class="card-title">Sync Process</h5>
+                <ol>
+                    <li>Log in to your account.</li>
+                    <li>Select the accounts you want to sync from the dropdown.</li>
+                    <li>Click the "Add Account" button to add the selected account.</li>
+                    <li>Optionally, you can remove an added account by clicking the "Remove" button next to it.</li>
+                    <li>Once all desired accounts are added, click the "Sync Accounts" button to initiate the sync process.</li>
+                    <li>Wait for the process to complete.</li>
+                    <li>Your accounts are now synced and ready to use.</li>
+                </ol>
             </div>
 
-            </div>
-            <!-- End Bordered Tabs -->
-
-            </div>
-            </div>
-
-            </div>
-            </div>
+            <!-- End Sync Process Steps -->
         </section>
-
     </main>
+    
     <!-- End #main -->
 
 

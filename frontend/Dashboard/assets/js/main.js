@@ -408,7 +408,92 @@
         accountNumberInput.addEventListener('input', updateSyncedAccountsInfo);
     }
 
-
+    document.addEventListener("DOMContentLoaded", function () {
+        const syncAccountsForm = document.getElementById("syncAccountsForm");
+        const addAccountButton = document.getElementById("addAccountButton");
+        const syncAccountButton = document.getElementById("syncAccountButton");
+        const addedAccountsList = document.getElementById("addedAccountsList");
+    
+        // Function to save added accounts to local storage
+        function saveAccountsToLocalStorage(accounts) {
+            localStorage.setItem("addedAccounts", JSON.stringify(accounts));
+        }
+    
+        // Function to retrieve added accounts from local storage
+        function getAccountsFromLocalStorage() {
+            const storedAccounts = localStorage.getItem("addedAccounts");
+            return storedAccounts ? JSON.parse(storedAccounts) : [];
+        }
+    
+        // Function to add account to the list
+        function addAccountToList(account) {
+            const listItem = document.createElement("li");
+            listItem.textContent = account;
+            
+            // Add a remove button for each account
+            const removeButton = document.createElement("button");
+            removeButton.textContent = "Remove";
+            removeButton.classList.add("btn", "btn-danger", "btn-sm", "ms-2");
+            removeButton.addEventListener("click", function () {
+                const index = storedAccounts.indexOf(account);
+                if (index !== -1) {
+                    storedAccounts.splice(index, 1);
+                    saveAccountsToLocalStorage(storedAccounts);
+                    addedAccountsList.removeChild(listItem);
+                }
+            });
+            
+            listItem.appendChild(removeButton);
+            addedAccountsList.appendChild(listItem);
+        }
+    
+        // Load previously added accounts from local storage
+        const storedAccounts = getAccountsFromLocalStorage();
+        storedAccounts.forEach(function (account) {
+            addAccountToList(account);
+        });
+    
+        syncAccountsForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+            // Sync accounts functionality
+            alert("Syncing accounts...");
+            // Simulate syncing process
+            setTimeout(function () {
+                alert("Accounts synced successfully!");
+            }, 2000);
+        });
+    
+        addAccountButton.addEventListener("click", function () {
+            const bankSelect = document.getElementById("bank");
+            const accountNumberInput = document.getElementById("accountNumber");
+            const bankName = bankSelect.options[bankSelect.selectedIndex].text;
+            const accountNumber = accountNumberInput.value.trim();
+            const newAccount = `${bankName}: ${accountNumber}`;
+    
+            if (accountNumber !== "") {
+                if (storedAccounts.includes(newAccount)) {
+                    alert("Account already added.");
+                } else {
+                    addAccountToList(newAccount);
+                    storedAccounts.push(newAccount);
+                    saveAccountsToLocalStorage(storedAccounts);
+                    accountNumberInput.value = "";
+                }
+            } else {
+                alert("Please enter an account number.");
+            }
+        });
+    
+        syncAccountButton.addEventListener("click", function () {
+            // Sync accounts functionality
+            alert("Syncing accounts...");
+            // Simulate syncing process
+            setTimeout(function () {
+                alert("Accounts synced successfully!");
+            }, 2000);
+        });
+    });
+    
 document.addEventListener("DOMContentLoaded", function() {
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/'; // Proxy server to bypass CORS
     const apiUrl = 'https://money.cnn.com/services/api/v2/news/headlines/specials'; // CNN finance news API endpoint

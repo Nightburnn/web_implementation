@@ -18,6 +18,6 @@ app.get('/api/accounts/:id', accountController.getAccountById);
 app.put('/api/accounts/:id', accountController.updateAccount);
 app.delete('/api/accounts/:id', accountController.deleteAccount);
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+app.listen(5000, () => {
+  console.log('Server is running on port 5000');
 });

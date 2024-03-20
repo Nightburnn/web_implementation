@@ -257,11 +257,13 @@
     
     <script>
 // Load saved budget data when the page loads
+// Load saved budget data when the page loads
 window.addEventListener('load', function() {
     var savedBudgetData = localStorage.getItem('budgetData');
     if (savedBudgetData) {
         document.getElementById('budgetBody').innerHTML = savedBudgetData;
         initializeSpentInputs(); // Initialize input fields for spent amounts
+        initializeDeleteButtons(); // Initialize delete buttons for each row
     }
 });
 
@@ -291,6 +293,27 @@ function initializeSpentInputs() {
         });
     });
 }
+
+// Function to initialize delete buttons for each row
+function initializeDeleteButtons() {
+    var rows = document.getElementById('budgetBody').querySelectorAll('tr');
+    rows.forEach(function(row) {
+        var deleteButton = document.createElement('button');
+        deleteButton.innerText = 'Delete';
+        deleteButton.classList.add('btn', 'btn-danger', 'btn-sm');
+        deleteButton.addEventListener('click', function() {
+            deleteRow(row);
+        });
+        row.insertCell(-1).appendChild(deleteButton); // Insert delete button as the last cell in the row
+    });
+}
+
+// Function to delete a row from the budget table
+function deleteRow(row) {
+    row.remove(); // Remove the row from the table
+    saveBudgetData(); // Save updated budget data to local storage
+}
+
 
 // Function to update remaining amount based on spent amount
 function updateRemainingAmount(row) {

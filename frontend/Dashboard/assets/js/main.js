@@ -408,7 +408,7 @@
         accountNumberInput.addEventListener('input', updateSyncedAccountsInfo);
     }
 
-    // JavaScript code
+
 document.addEventListener("DOMContentLoaded", function() {
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/'; // Proxy server to bypass CORS
     const apiUrl = 'https://money.cnn.com/services/api/v2/news/headlines/specials'; // CNN finance news API endpoint

@@ -440,64 +440,6 @@
     </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        // Function to fetch and display financial news
-        function displayFinancialNews() {
-            // URL of the Google News RSS feed for finance
-            var rssFeedUrl = "https://news.google.com/rss/topics/CAAqJAgKIh5DQkFTRUFvS0wyMHZNRE5mTlRFU0JYcHZHZ0pDWkFvQ1JDRS1nY2Mt?hl=en-IN&gl=IN&ceid=IN:en";
-
-            // Fetch the RSS feed
-            $.ajax({
-                url: rssFeedUrl,
-                method: "GET",
-                dataType: "xml",
-                success: function(data) {
-                    // Clear previous news items
-                    $("#news-container").empty();
-
-                    // Parse the XML data
-                    $(data).find("item").each(function() {
-                        var title = $(this).find("title").text();
-                        var link = $(this).find("link").text();
-                        var pubDate = $(this).find("pubDate").text();
-                        var description = $(this).find("description").text();
-                        var image = $(this).find("media\\:content, content").attr("url");
-
-                        // Construct HTML for the news item
-                        var newsItemHtml = `
-                            <div class="card mb-3">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="${image}" class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">${title}</h5>
-                                            <p class="card-text">${description}</p>
-                                            <p class="card-text"><small class="text-muted">${pubDate}</small></p>
-                                            <a href="${link}" class="btn btn-primary" target="_blank">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-
-                        // Append the news item HTML to the container
-                        $("#news-container").append(newsItemHtml);
-                    });
-                },
-                error: function(xhr, status, error) {
-                    console.error("Failed to fetch financial news:", error);
-                }
-            });
-        }
-
-        // Display financial news when the page loads
-        displayFinancialNews();
-    });
-</script>
-
     </main>
     <!-- End #main -->
 

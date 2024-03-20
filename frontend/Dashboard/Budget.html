@@ -173,30 +173,13 @@
                                                     <th>Remaining Amount (₦)</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Groceries</td>
-                                                    <td>500</td>
-                                                    <td>380</td>
-                                                    <td>120</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Utilities</td>
-                                                    <td>300</td>
-                                                    <td>250</td>
-                                                    <td>50</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Entertainment</td>
-                                                    <td>200</td>
-                                                    <td>150</td>
-                                                    <td>50</td>
-                                                </tr>
+                                            <tbody id="budgetBody">
+                                                <!-- Budget data will be populated here -->
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-
+        
                                 <!-- Manage Budget Tab -->
                                 <div class="tab-pane fade" id="manage">
                                     <h5 class="card-title">Manage Budget</h5>
@@ -223,7 +206,7 @@
                         </div>
                     </div>
                 </div>
-
+        
                 <!-- Budget Process Steps -->
                 <div class="col-xl-4">
                     <div class="card">
@@ -240,6 +223,7 @@
                 <!-- End Budget Process Steps -->
             </div>
         </section>
+        
 
     </main>
     <!-- End #main -->
@@ -270,6 +254,86 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    
+    <script>
+// Load saved budget data when the page loads
+window.addEventListener('load', function() {
+    var savedBudgetData = localStorage.getItem('budgetData');
+    if (savedBudgetData) {
+        document.getElementById('budgetBody').innerHTML = savedBudgetData;
+        initializeSpentInputs(); // Initialize input fields for spent amounts
+    }
+});
+
+// Function to initialize input fields for spent amounts
+function initializeSpentInputs() {
+    var rows = document.getElementById('budgetBody').querySelectorAll('tr');
+    rows.forEach(function(row) {
+        var spentCell = row.cells[2];
+        var allocatedAmount = parseFloat(row.cells[1].innerText);
+        var remainingAmount = parseFloat(row.cells[3].innerText);
+        var spentAmount = allocatedAmount - remainingAmount;
+
+        // Create input field and set its value
+        var inputField = document.createElement('input');
+        inputField.type = 'number';
+        inputField.classList.add('form-control', 'spent-input');
+        inputField.value = spentAmount;
+        inputField.min = '0';
+
+        // Replace the content of the cell with the input field
+        spentCell.innerHTML = '';
+        spentCell.appendChild(inputField);
+
+        // Add event listener for input change
+        inputField.addEventListener('change', function() {
+            updateRemainingAmount(row);
+        });
+    });
+}
+
+// Function to update remaining amount based on spent amount
+function updateRemainingAmount(row) {
+    var allocatedAmount = parseFloat(row.cells[1].innerText);
+    var spentAmount = parseFloat(row.cells[2].querySelector('.spent-input').value);
+    var remainingAmount = allocatedAmount - spentAmount;
+    row.cells[3].innerText = remainingAmount;
+    saveBudgetData(); // Save budget data to local storage after updating spent amount
+}
+
+// Function to save budget data to local storage
+function saveBudgetData() {
+    var budgetData = document.getElementById('budgetBody').innerHTML;
+    localStorage.setItem('budgetData', budgetData);
+}
+
+// Event listener for form submission
+document.getElementById('manageBudgetForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Get input values
+    var category = document.getElementById('category').value;
+    var amount = parseFloat(document.getElementById('amount').value);
+    var spent = 0; // Set initial spent amount to 0
+    var remaining = amount; // Set initial remaining amount to the allocated amount
+
+    // Create table row
+    var newRow = '<tr><td>' + category + '</td><td>' + amount + '</td><td>' + spent + '</td><td>' + remaining + '</td></tr>';
+
+    // Append new row to the budget table
+    document.getElementById('budgetBody').innerHTML += newRow;
+
+    // Initialize input fields for spent amounts
+    initializeSpentInputs();
+
+    // Save budget data to local storage
+    saveBudgetData();
+
+    // Reset form
+    document.getElementById('manageBudgetForm').reset();
+});
+
+    </script>
 
 </body>
 

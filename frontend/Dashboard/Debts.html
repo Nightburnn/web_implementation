@@ -270,94 +270,109 @@
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
     <script>
-     // Load saved debt data when the page loads
-window.addEventListener('load', function() {
-    var savedActiveDebts = localStorage.getItem('activeDebts');
-    if (savedActiveDebts) {
-        document.getElementById('activeDebtsBody').innerHTML = savedActiveDebts;
-    }
-
-    var savedSettledDebts = localStorage.getItem('settledDebts');
-    if (savedSettledDebts) {
-        document.getElementById('settledDebtsBody').innerHTML = savedSettledDebts;
-    }
-});
-
-// Function to save debt data to local storage
-function saveDebtData() {
-    var activeDebtsData = document.getElementById('activeDebtsBody').innerHTML;
-    localStorage.setItem('activeDebts', activeDebtsData);
-
-    var settledDebtsData = document.getElementById('settledDebtsBody').innerHTML;
-    localStorage.setItem('settledDebts', settledDebtsData);
-}
-
-document.getElementById('debtForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    // Get input values
-    var date = document.getElementById('debtDate').value;
-    var amount = document.getElementById('debtAmount').value;
-    var from = document.getElementById('debtFrom').value;
-    var status = document.getElementById('debtStatus').value;
-    
-    // Create table row
-    var newRow = '<tr><td>' + date + '</td><td>' + amount + '</td><td>' + from + '</td><td>' + status + '</td></tr>';
-    
-    // Add row to the appropriate table
-    if (status === 'Ongoing') {
-        document.getElementById('activeDebtsBody').innerHTML += newRow;
-    } else {
-        document.getElementById('settledDebtsBody').innerHTML += newRow;
-    }
-    
-    // Reset form
-    document.getElementById('debtForm').reset();
-
-    // Save debt data to local storage
-    saveDebtData();
-
-    // Update select option in the table
-    updateSelectOption();
-});
-
-// Function to update select option in the table
-function updateSelectOption() {
-    var selectOption = '<select class="form-select status-select" data-row-id="activeDebt1"><option value="Ongoing">Ongoing</option><option value="Settled">Settled</option></select>';
-    var table = document.getElementById('activeDebtsBody');
-    var lastRow = table.rows[table.rows.length - 1];
-    lastRow.cells[3].innerHTML = selectOption;
-    
-    // Add event listener for select change
-    lastRow.cells[3].querySelector('.status-select').addEventListener('change', function(event) {
-        var newStatus = event.target.value;
-        var rowId = lastRow.id;
-        
-        // Move the row to the appropriate table
-        if (newStatus === 'Settled') {
-            document.getElementById('settledDebtsBody').appendChild(lastRow);
-        } else {
-            document.getElementById('activeDebtsBody').appendChild(lastRow);
+        // Function to initialize select options for a given table
+        function initializeSelectOptions(tableId) {
+            var rows = document.getElementById(tableId).querySelectorAll('tr');
+            rows.forEach(function(row) {
+                addSelectOption(row);
+            });
         }
         
-        // Update status in the row
-        changeStatus(rowId, newStatus);
-
-        // Save debt data to local storage after status change
-        saveDebtData();
-    });
-}
-
-// Function to handle status change
-function changeStatus(rowId, newStatus) {
-    var row = document.getElementById(rowId);
-    var cells = row.getElementsByTagName('td');
-    // Update the status cell
-    cells[3].innerText = newStatus;
-}
-
-    </script>
-
+        // Function to add select option for a row
+        function addSelectOption(row) {
+            var selectOption = '<select class="form-select status-select"><option value="Ongoing">Ongoing</option><option value="Settled">Settled</option><option value="Delete">Delete</option></select>';
+            row.cells[3].innerHTML = selectOption;
+        
+            // Add event listener for select change
+            var select = row.querySelector('.status-select');
+            if (select) {
+                select.addEventListener('change', function(event) {
+                    var selectedOption = event.target.value;
+                    var rowId = row.id;
+        
+                    // Perform action based on selected option
+                    if (selectedOption === 'Settled' || selectedOption === 'Ongoing') {
+                        // Move the row to the appropriate table
+                        if (selectedOption === 'Settled') {
+                            document.getElementById('settledDebtsBody').appendChild(row);
+                        } else {
+                            document.getElementById('activeDebtsBody').appendChild(row);
+                        }
+                        // Update status in the row
+                        changeStatus(rowId, selectedOption);
+                    } else if (selectedOption === 'Delete') {
+                        // Remove the row
+                        row.remove();
+                    }
+        
+                    // Save debt data to local storage after any action
+                    saveDebtData();
+                });
+            }
+        }
+        
+        // Function to save debt data to local storage
+        function saveDebtData() {
+            var activeDebtsData = document.getElementById('activeDebtsBody').innerHTML;
+            localStorage.setItem('activeDebts', activeDebtsData);
+        
+            var settledDebtsData = document.getElementById('settledDebtsBody').innerHTML;
+            localStorage.setItem('settledDebts', settledDebtsData);
+        }
+        
+        // Load saved debt data when the page loads
+        window.addEventListener('load', function() {
+            var savedActiveDebts = localStorage.getItem('activeDebts');
+            if (savedActiveDebts) {
+                document.getElementById('activeDebtsBody').innerHTML = savedActiveDebts;
+                initializeSelectOptions('activeDebtsBody'); // Initialize select options for existing active debts
+            }
+        
+            var savedSettledDebts = localStorage.getItem('settledDebts');
+            if (savedSettledDebts) {
+                document.getElementById('settledDebtsBody').innerHTML = savedSettledDebts;
+                initializeSelectOptions('settledDebtsBody'); // Initialize select options for existing settled debts
+            }
+        });
+        
+        document.getElementById('debtForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get input values
+            var date = document.getElementById('debtDate').value;
+            var amount = document.getElementById('debtAmount').value;
+            var from = document.getElementById('debtFrom').value;
+            var status = document.getElementById('debtStatus').value;
+            
+            // Create table row
+            var newRow = '<tr id="newRow"><td>' + date + '</td><td>' + amount + '</td><td>' + from + '</td><td></td></tr>';
+            
+            // Add row to the appropriate table
+            if (status === 'Ongoing') {
+                document.getElementById('activeDebtsBody').innerHTML += newRow;
+            } else {
+                document.getElementById('settledDebtsBody').innerHTML += newRow;
+            }
+        
+            // Save debt data to local storage
+            saveDebtData();
+        
+            // Update select option in the table
+            initializeSelectOptions('activeDebtsBody');
+        
+            // Reset form
+            document.getElementById('debtForm').reset();
+        });
+        
+        // Function to handle status change
+        function changeStatus(rowId, newStatus) {
+            var row = document.getElementById(rowId);
+            var cells = row.getElementsByTagName('td');
+            // Update the status cell
+            cells[3].innerText = newStatus;
+        }
+        </script>
+        
 </body>
 
 </html>

@@ -168,7 +168,7 @@
                                             <i class="bi bi-wallet2"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>₦2,500</h6>
+                                            <h6 id="income">₦0.00</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -191,8 +191,8 @@
                                             <i>&#x20A6</i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>₦3,264</h6>
-                                            <span class="text-success small pt-1 fw-bold">8% Increase</span>
+                                            <h6>₦0.00</h6>
+                                            <span class="text-success small pt-1 fw-bold">0% Increase</span>
                                         </div>
                                     </div>
                                 </div>
@@ -217,13 +217,13 @@
                                             new ApexCharts(document.querySelector("#reportsChart"), {
                                                 series: [{
                                                     name: 'Income',
-                                                    data: [250000, 280000, 300000, 270000, 320000, 350000], // Sample income data in Naira
+                                                    data: [0, 0, 0, 0, 0, 0], // Set all data points to 0
                                                 }, {
                                                     name: 'Expenses',
-                                                    data: [180000, 200000, 220000, 210000, 240000, 250000], // Sample expense data in Naira
+                                                    data: [0, 0, 0, 0, 0, 0], // Set all data points to 0
                                                 }, {
                                                     name: 'Savings',
-                                                    data: [70000, 80000, 80000, 60000, 80000, 100000], // Sample savings data in Naira
+                                                    data: [0, 0, 0, 0, 0, 0], // Set all data points to 0
                                                 }],
                                                 chart: {
                                                     height: 350,
@@ -279,6 +279,7 @@
                                             }).render();
                                         });
                                     </script>
+                                    
 
 
                                     <!-- End Line Chart -->

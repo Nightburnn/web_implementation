@@ -429,7 +429,7 @@
         function addAccountToList(account) {
             const listItem = document.createElement("li");
             listItem.textContent = account;
-            
+    
             // Add a remove button for each account
             const removeButton = document.createElement("button");
             removeButton.textContent = "Remove";
@@ -442,7 +442,7 @@
                     addedAccountsList.removeChild(listItem);
                 }
             });
-            
+    
             listItem.appendChild(removeButton);
             addedAccountsList.appendChild(listItem);
         }
@@ -456,11 +456,21 @@
         syncAccountsForm.addEventListener("submit", function (event) {
             event.preventDefault();
             // Sync accounts functionality
-            alert("Syncing accounts...");
-            // Simulate syncing process
-            setTimeout(function () {
-                alert("Accounts synced successfully!");
-            }, 2000);
+            Swal.fire({
+                title: 'Syncing accounts...',
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    Swal.fire({
+                        title: 'Accounts synced successfully!',
+                        icon: 'success'
+                    });
+                }
+            });
         });
     
         addAccountButton.addEventListener("click", function () {
@@ -472,7 +482,10 @@
     
             if (accountNumber !== "") {
                 if (storedAccounts.includes(newAccount)) {
-                    alert("Account already added.");
+                    Swal.fire({
+                        title: 'Account already added.',
+                        icon: 'warning'
+                    });
                 } else {
                     addAccountToList(newAccount);
                     storedAccounts.push(newAccount);
@@ -480,19 +493,51 @@
                     accountNumberInput.value = "";
                 }
             } else {
-                alert("Please enter an account number.");
+                Swal.fire({
+                    title: 'Please enter an account number.',
+                    icon: 'error'
+                });
             }
         });
     
         syncAccountButton.addEventListener("click", function () {
             // Sync accounts functionality
-            alert("Syncing accounts...");
-            // Simulate syncing process
-            setTimeout(function () {
-                alert("Accounts synced successfully!");
-            }, 2000);
+            Swal.fire({
+                title: 'Syncing accounts...',
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    Swal.fire({
+                        title: 'Accounts synced successfully!',
+                        icon: 'success'
+                    }).then(() => {
+                        // Redirect to "../index.html" after the user clicks "OK"
+                        window.location.href = "././index.html";
+
+
+                        // Generate random numbers for index data
+                const randomIncome = Math.floor(Math.random() * 8000); // Random income between 0 and 8000
+                const randomExpense = Math.floor(Math.random() * 8000); // Random expense between 0 and 8000
+                const randomSavings = Math.floor(Math.random() * 8000); // Random savings between 0 and 8000
+
+                // Update index numbers with random data
+                console.log("Updating budget...");
+                document.getElementById("income").innerText = '₦' + randomIncome.toLocaleString();
+                document.getElementById("expense").innerText = '₦' + randomExpense.toLocaleString();
+                document.getElementById("savings").innerText = '₦' + randomSavings.toLocaleString();
+
+
+                    });
+                }
+            });
         });
+        
     });
+    
     
 document.addEventListener("DOMContentLoaded", function() {
     const proxyUrl = 'https://cors-anywhere.herokuapp.com/'; // Proxy server to bypass CORS

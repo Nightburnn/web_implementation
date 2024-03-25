@@ -909,6 +909,40 @@ h6 {
 
 
 /* News & Updates */
+/* CSS for the news slideshow */
+.news-container {
+    overflow: hidden;
+}
+
+.news-items {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.news-item {
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+/* Optional: Style for the navigation buttons */
+.news-controls {
+    margin-top: 10px;
+}
+
+.news-controls button {
+    cursor: pointer;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+.news-controls button:hover {
+    background-color: #0056b3;
+}
 
 .dashboard .news .post-item+.post-item {
     margin-top: 15px;

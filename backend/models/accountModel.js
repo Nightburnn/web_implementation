@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const accountSchema = new mongoose.Schema({
-  bankName: String,
-  accountNumber: { type: String, unique: true },
-  accountType: String,
+  bank_name: String,
+  account_number: { type: String, unique: true },
+  account_type: String,
   balance: Number,
   currency: String,
   owner: String,

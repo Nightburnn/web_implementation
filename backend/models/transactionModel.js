@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const transactionSchema = new mongoose.Schema({
-  bankName: String,
-  accountNumber: String,
+  bank_name: String,
+  account_number: String,
   transactions: [{
     date: Date,
     description: String,

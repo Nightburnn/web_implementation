@@ -935,14 +935,14 @@ h6 {
 .news-controls button {
     cursor: pointer;
     border: none;
-    background-color: #007bff;
+    background-color: #6be903;
     color: #fff;
-    padding: 5px 10px;
+    padding: 4px 8px;
     margin-right: 5px;
 }
 
 .news-controls button:hover {
-    background-color: #0056b3;
+    background-color: #00b300;
 }
 
 .dashboard .news .post-item+.post-item {

@@ -539,55 +539,54 @@
     });
     
     
-document.addEventListener("DOMContentLoaded", function() {
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/'; // Proxy server to bypass CORS
-    const apiUrl = 'https://money.cnn.com/services/api/v2/news/headlines/specials'; // CNN finance news API endpoint
+    // Function to populate values for balance, expenses summary, and balance trends
+    function populateValues() {
+        // Balance
+        document.querySelector('.info-card.sales-card h6').textContent = '₦200,500';
 
-    const newsContainer = document.getElementById("news-container");
+        // Expenses Summary
+        document.querySelector('.info-card.revenue-card h6').textContent = '₦183,264';
+        document.querySelector('.info-card.revenue-card .text-success').textContent = '8% Increase';
 
-    // Function to fetch news from the API
-    async function fetchNews() {
-        try {
-            const response = await fetch(proxyUrl + apiUrl);
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error('Error fetching news:', error);
-            return null;
-        }
+        // Balance Trends (Chart)
+        var reportsChart = document.querySelector('#reportsChart');
+        var apexChart = ApexCharts.getInstance(reportsChart);
+        apexChart.updateSeries([
+            { data: [250000, 280000, 300000, 270000, 320000, 350000] }, // Update income data
+            { data: [180000, 200000, 220000, 210000, 240000, 250000] }, // Update expense data
+            { data: [70000, 80000, 80000, 60000, 80000, 100000] } // Update savings data
+        ]);
     }
 
-    // Function to display news
-    function displayNews(newsData) {
-        const headlines = newsData && newsData.result && newsData.result.headlines;
-        if (headlines && headlines.length > 0) {
-            const randomIndex = Math.floor(Math.random() * headlines.length);
-            const randomHeadline = headlines[randomIndex];
-            const postItem = document.createElement("div");
-            postItem.classList.add("post-item", "clearfix");
-            postItem.innerHTML = `
-                <h4><a href="${randomHeadline.url}">${randomHeadline.title}</a></h4>
-                <p>${randomHeadline.summary}</p>
-            `;
-            newsContainer.innerHTML = ''; // Clear previous content
-            newsContainer.appendChild(postItem);
-        }
+    // Function to increase values by 49 percent
+    function increaseValues() {
+        // Balance
+        var balanceValue = document.querySelector('.info-card.sales-card h6').textContent;
+        var balanceAmount = parseInt(balanceValue.replace('₦', '').replace(',', ''));
+        var increasedBalance = balanceAmount * 1.49;
+        document.querySelector('.info-card.sales-card h6').textContent = '₦' + increasedBalance.toLocaleString();
+
+        // Expenses Summary
+        var expensesValue = document.querySelector('.info-card.revenue-card h6').textContent;
+        var expensesAmount = parseInt(expensesValue.replace('₦', '').replace(',', ''));
+        var increasedExpenses = expensesAmount * 1.49;
+        document.querySelector('.info-card.revenue-card h6').textContent = '₦' + increasedExpenses.toLocaleString();
+
+        // Balance Trends (Chart)
+        var reportsChart = document.querySelector('#reportsChart');
+        var apexChart = ApexCharts.getInstance(reportsChart);
+        var seriesData = apexChart.w.globals.series.slice();
+        seriesData.forEach((data, index) => {
+            seriesData[index] = data.map(value => value * 1.49);
+        });
+        apexChart.updateSeries(seriesData);
     }
 
-    // Function to update news every 10 seconds
-    async function updateNews() {
-        const newsData = await fetchNews();
-        if (newsData) {
-            displayNews(newsData);
-        }
-    }
+    // Event listener for Button 1 (populate values)
+    document.getElementById('addAccountButton').addEventListener('click', populateValues);
 
-    // Initial display
-    updateNews();
-
-    // Set interval to update news every 10 seconds
-    setInterval(updateNews, 10000);
-});
+    // Event listener for Button 2 (increase values by 49 percent)
+    document.getElementById('syncAccountButton').addEventListener('click', increaseValues);
 
     /**
      * Autoresize echart charts
@@ -603,4 +602,5 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 200);
     }
 
+    
 })();

@@ -1,3 +1,4 @@
+import asyncHandler from 'express-async-handler';
 import Account from '../models/accountModel.js';
 
 // Function to create a new account

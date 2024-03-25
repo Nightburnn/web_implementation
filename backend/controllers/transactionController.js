@@ -1,4 +1,5 @@
 import transactionController from './controllers/transactionController.js';
+import asyncHandler from 'express-async-handler';
 
 // Function to create a new transaction
 exports.createTransaction = async (req, res) => {

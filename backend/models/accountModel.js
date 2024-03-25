@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+import mongoose from 'mongoose';
 const accountSchema = new mongoose.Schema({
   bank_name: String,
   account_number: { type: String, unique: true },
@@ -12,4 +11,5 @@ const accountSchema = new mongoose.Schema({
 
 const Account = mongoose.model('Account', accountSchema);
 
-module.exports = Account;
+export default Account;
+

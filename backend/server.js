@@ -12,6 +12,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
 import userRoutes from './routes/user.js';
+import accountRoutes from './routes/account.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename); // Go up one level
@@ -41,7 +42,7 @@ app.use(passport.session());
 
 // Define your API routes
 app.use('/api/users', userRoutes);
-
+App.use('/api/accounts' , accountRoutes)
 // A simple route to say hello from the server side
 app.get('/', (req, res) => {
   res.send('Hello from the server side!');

@@ -910,6 +910,16 @@ h6 {
 
 /* News & Updates */
 /* CSS for the news slideshow */
+  
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .news-container {
     overflow: hidden;
     white-space: nowrap;

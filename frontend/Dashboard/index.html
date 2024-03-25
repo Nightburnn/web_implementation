@@ -17,6 +17,7 @@
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -434,128 +435,117 @@
         <div class="card">
             <div class="card-body pb-0">
                 <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
-                <div class="news-container">
-                    <div id="news-container" class="news-items">
-                        <!-- News items will be dynamically added here -->
+             
+                <!-- Swiper Slideshow -->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <!-- Slides will be dynamically added here -->
                     </div>
+                    <!-- Add Pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
                 </div>
-                <div class="news-controls">
-                    <button id="prevButton">Previous</button>
-                    <button id="nextButton">Next</button>
+                <!-- End Swiper Slideshow -->
+
+                <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+                <script>
+                    // Sample JSON data containing news articles
+                    var jsonData = {
+                        "articles": [{
+                            "title": "PM receives delegation of leading Dutch enterprises",
+                            "author": "VNA",
+                            "publishedAt": "2024-03-19T13:34:00Z",
+                            "url": "https://en.vietnamplus.vn/pm-receives-delegation-of-leading-dutch-enterprises/283166.vnp"
+                        }, {
+                            "title": "Investment Stewardship 2023 Annual Report",
+                            "author": "John Galloway, John Galloway",
+                            "publishedAt": "2024-03-19T13:32:14Z",
+                            "url": "https://corpgov.law.harvard.edu/2024/03/19/investment-stewardship-2023-annual-report/"
+                        }, {
+                            "title": "2024 AL East preview: High-flying young Orioles seek to repeat",
+                            "author": "Andrew Mearns",
+                            "publishedAt": "2024-03-19T13:30:00Z",
+                            "url": "https://www.sbnation.com/2024/3/19/24101889/mlb-season-preview-yankees-red-sox-orioles-blue-jays-rays-al-east"
+                        }, {
+                            "title": "Soho House & Co Inc. (NYSE:SHCO) Q4 2023 Earnings Call Transcript",
+                            "author": "Insider Monkey Transcripts",
+                            "publishedAt": "2024-03-19T13:31:03Z",
+                            "url": "https://finance.yahoo.com/news/soho-house-co-inc-nyse-133103818.html"
+                        }, {
+                            "title": "Razer Nommo V2 Pro Review",
+                            "author": "James Bentley",
+                            "publishedAt": "2024-03-19T13:27:05Z",
+                            "url": "https://www.pcgamer.com/hardware/speakers/razer-nommo-v2-pro-speaker-review/"
+                        }, {
+                            "title": "AutoScheduler CEO Keith Moore Discusses Warehouse Trends, Innovation, and Entrepreneurship",
+                            "author": "benzinga.com",
+                            "publishedAt": "2024-03-19T13:22:15Z",
+                            "url": "https://biztoc.com/x/5767ad9795578312"
+                        }, {
+                            "title": "Fastwyre Broadband Invests Over $60 Million To Enhance Its Fiber-Optic Network, Transforming Missouri Regions with Top-Tier Internet Speeds at Affordable Rates",
+                            "author": "Fastwyre Broadband",
+                            "publishedAt": "2024-03-19T13:19:00Z",
+                            "url": "https://www.globenewswire.com/news-release/2024/03/19/2848659/0/en/Fastwyre-Broadband-Invests-Over-60-Million-To-Enhance-Its-Fiber-Optic-Network-Transforming-Missouri-Regions-with-Top-Tier-Internet-Speeds-at-Affordable-Rates.html"
+                        }, {
+                            "title": "Fifth Third Bank Moving to ICE's End-to-End Mortgage Ecosystem to Improve Customer Experience",
+                            "author": null,
+                            "publishedAt": "2024-03-19T13:16:02Z",
+                            "url": "https://www.marketscreener.com/quote/stock/INTERCONTINENTAL-EXCHANGE-14931198/news/Fifth-Third-Bank-Moving-to-ICE-s-End-to-End-Mortgage-Ecosystem-to-Improve-Customer-Experience-46231851/"
+                        }, {
+                            "title": "Jackson Public Schools in Mississippi Selects Tyler Technologies' Enterprise Resource Planning Solution",
+                            "author": null,
+                            "publishedAt": "2024-03-19T13:21:02Z",
+                            "url": "https://www.marketscreener.com/quote/stock/INTERCONTINENTAL-EXCHANGE-14931198/news/Fifth-Third-Bank-Moving-to-ICE-s-End-to-End-Mortgage-Ecosystem-to-Improve-Customer-Experience-46231851/"
+                        }]
+                    };
+
+                    // Function to format the date
+                    function formatDate(dateString) {
+                        var date = new Date(dateString);
+                        return date.toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                    }
+                    // Function to create slide HTML
+                    function createSlide(article) {
+                        return `
+                <div class="swiper-slide">
+                    <h3>${article.title}</h3>
+                    <p>Author: ${article.author}</p>
+                    <a href="${article.url}" target="_blank">Read more</a>
                 </div>
-            </div>
-        </div>
-    </div>
-    
+            `;
+                    }
 
-    </main>
-    <!-- End #main -->
+                    // Initialize Swiper
+                    var swiper = new Swiper('.swiper-container', {
+                        loop: true,
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                        pagination: {
+                            el: '.swiper-pagination',
+                        },
+                    });
 
-    <script>
-        // Sample JSON data containing news articles
-        var jsonData = {
-    "articles": [
-        {
-            "title": "PM receives delegation of leading Dutch enterprises",
-            "author": "VNA",
-            "publishedAt": "2024-03-19T13:34:00Z",
-            "url": "https://en.vietnamplus.vn/pm-receives-delegation-of-leading-dutch-enterprises/283166.vnp"
-        },
-        {
-            "title": "Investment Stewardship 2023 Annual Report",
-            "author": "John Galloway, John Galloway",
-            "publishedAt": "2024-03-19T13:32:14Z",
-            "url": "https://corpgov.law.harvard.edu/2024/03/19/investment-stewardship-2023-annual-report/"
-        },
-        {
-            "title": "2024 AL East preview: High-flying young Orioles seek to repeat",
-            "author": "Andrew Mearns",
-            "publishedAt": "2024-03-19T13:30:00Z",
-            "url": "https://www.sbnation.com/2024/3/19/24101889/mlb-season-preview-yankees-red-sox-orioles-blue-jays-rays-al-east"
-        },
-        {
-            "title": "Soho House & Co Inc. (NYSE:SHCO) Q4 2023 Earnings Call Transcript",
-            "author": "Insider Monkey Transcripts",
-            "publishedAt": "2024-03-19T13:31:03Z",
-            "url": "https://finance.yahoo.com/news/soho-house-co-inc-nyse-133103818.html"
-        },
-        {
-            "title": "Razer Nommo V2 Pro Review",
-            "author": "James Bentley",
-            "publishedAt": "2024-03-19T13:27:05Z",
-            "url": "https://www.pcgamer.com/hardware/speakers/razer-nommo-v2-pro-speaker-review/"
-        },
-        {
-            "title": "AutoScheduler CEO Keith Moore Discusses Warehouse Trends, Innovation, and Entrepreneurship",
-            "author": "benzinga.com",
-            "publishedAt": "2024-03-19T13:22:15Z",
-            "url": "https://biztoc.com/x/5767ad9795578312"
-        },
-        {
-            "title": "Fastwyre Broadband Invests Over $60 Million To Enhance Its Fiber-Optic Network, Transforming Missouri Regions with Top-Tier Internet Speeds at Affordable Rates",
-            "author": "Fastwyre Broadband",
-            "publishedAt": "2024-03-19T13:19:00Z",
-            "url": "https://www.globenewswire.com/news-release/2024/03/19/2848659/0/en/Fastwyre-Broadband-Invests-Over-60-Million-To-Enhance-Its-Fiber-Optic-Network-Transforming-Missouri-Regions-with-Top-Tier-Internet-Speeds-at-Affordable-Rates.html"
-        },
-        {
-            "title": "Fifth Third Bank Moving to ICE's End-to-End Mortgage Ecosystem to Improve Customer Experience",
-            "author": null,
-            "publishedAt": "2024-03-19T13:16:02Z",
-            "url": "https://www.marketscreener.com/quote/stock/INTERCONTINENTAL-EXCHANGE-14931198/news/Fifth-Third-Bank-Moving-to-ICE-s-End-to-End-Mortgage-Ecosystem-to-Improve-Customer-Experience-46231851/"
-        },
-        {
-            "title": "Jackson Public Schools in Mississippi Selects Tyler Technologies' Enterprise Resource Planning Solution",
-            "author": null,
-            "publishedAt": "2024-03-19T13:21:02Z",
-            "url": "https://www.marketscreener.com/quote/stock/INTERCONTINENTAL-EXCHANGE-14931198/news/Fifth-Third-Bank-Moving-to-ICE-s-End-to-End-Mortgage-Ecosystem-to-Improve-Customer-Experience-46231851/"
-        }
-    ]
-};
-    
-        // Function to format the date
-        function formatDate(dateString) {
-            var date = new Date(dateString);
-            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-        }
-    
-        // Function to insert news articles into the news section
-        function insertNewsArticles() {
-            var newsContainer = document.getElementById('news-container');
-    
-            // Iterate through the articles
-            jsonData.articles.forEach(function(article) {
-                // Create HTML elements
-                var articleElement = document.createElement('div');
-                articleElement.classList.add('news-item');
-    
-                var titleElement = document.createElement('h6');
-                titleElement.textContent = article.title;
-    
-                var authorElement = document.createElement('p');
-                authorElement.textContent = 'Author: ' + article.author;
-    
-                var dateElement = document.createElement('p');
-                dateElement.textContent = 'Published on: ' + formatDate(article.publishedAt);
-    
-                var linkElement = document.createElement('a');
-                linkElement.textContent = 'Read more';
-                linkElement.href = article.url;
-                linkElement.target = '_blank';
-    
-                // Append elements to the news item
-                articleElement.appendChild(titleElement);
-                articleElement.appendChild(authorElement);
-                articleElement.appendChild(dateElement);
-                articleElement.appendChild(linkElement);
-    
-                // Append news item to the news container
-                newsContainer.appendChild(articleElement);
-            });
-        }
-    
-        // Call the function to insert news articles
-        insertNewsArticles();
-    </script>
+                    // Insert articles into slides
+                    var slidesHTML = '';
+                    jsonData.articles.forEach(function(article) {
+                        slidesHTML += createSlide(article);
+                    });
+                    document.querySelector('.swiper-wrapper').innerHTML = slidesHTML;
+
+                    // Function to auto slide every 3 seconds
+                    function autoSlide() {
+                        swiper.slideNext();
+                    }
+                    setInterval(autoSlide, 3000); // Slide every 3 seconds
+                </script>
     
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">

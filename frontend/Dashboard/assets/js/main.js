@@ -603,13 +603,14 @@
     }
 // Get the news container and items
 var newsContainer = document.getElementById('news-container');
-var newsItems = document.getElementsByClassName('news-item');
+var newsItems = document.querySelectorAll('.news-item');
 var currentIndex = 0;
+var itemWidth = newsItems[0].offsetWidth;
 
 // Function to show the current news item
 function showNewsItem(index) {
     // Calculate the new position for the slideshow
-    var newPosition = -index * 100 + '%';
+    var newPosition = -index * itemWidth + 'px';
     // Apply the new position to the news items container
     newsContainer.style.transform = 'translateX(' + newPosition + ')';
     // Update the current index
@@ -632,6 +633,7 @@ document.getElementById('prevButton').addEventListener('click', function() {
         showNewsItem(currentIndex - 1);
     }
 });
+
 
     
 })();

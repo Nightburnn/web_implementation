@@ -912,6 +912,7 @@ h6 {
 /* CSS for the news slideshow */
 .news-container {
     overflow: hidden;
+    white-space: nowrap;
 }
 
 .news-items {

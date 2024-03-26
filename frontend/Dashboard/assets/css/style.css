@@ -910,7 +910,9 @@ h6 {
 
 /* News & Updates */
 /* CSS for the news slideshow */
-  
+.swiper-container {
+    overflow: hidden; /* Hide overflow to prevent partial visibility of slides during transition */
+} 
 .swiper-slide {
     text-align: center;
     font-size: 10px;
@@ -918,7 +920,8 @@ h6 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    width:100%;
+    height: 100%;
 }
 .news-container {
    

@@ -634,6 +634,44 @@ document.getElementById('prevButton').addEventListener('click', function() {
     }
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    // Initialize balance and expenses
+    var balance = 1000; // Example initial balance
+    var expenses = balance * 0.4; // Initial expenses (40% of balance)
+    updateValues();
+
+    // Function to update balance and expenses on the page
+    function updateValues() {
+        // Update balance
+        document.getElementById('balance').textContent = '₦' + balance.toFixed(2);
+
+        // Update expenses
+        document.getElementById('expenses').textContent = '₦' + expenses.toFixed(2);
+
+        // Update expenses increase/decrease status
+        var increase = (expenses - (balance * 0.4)) > 0;
+        var statusText = increase ? 'Increase' : 'Decrease';
+        document.getElementById('expenses-status').textContent = Math.abs(expenses - (balance * 0.4)).toFixed(2) + '% ' + statusText;
+    }
+
+    // Event listener for Add Account button
+    document.getElementById('addAccountButton').addEventListener('click', function() {
+        // Update balance and expenses based on Add Account button logic
+        // For example:
+        balance -= 100; // Example deduction from balance
+        expenses = balance * 0.4; // Recalculate expenses
+        updateValues();
+    });
+
+    // Event listener for Sync Accounts button
+    document.getElementById('syncAccountButton').addEventListener('click', function() {
+        // Update balance and expenses based on Sync Accounts button logic
+        // For example:
+        balance *= 1.73; // Example increase in balance by 73%
+        expenses = balance * 0.4; // Recalculate expenses
+        updateValues();
+    });
+});
 
     
 })();

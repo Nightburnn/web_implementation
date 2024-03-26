@@ -42,7 +42,7 @@ app.use(passport.session());
 
 // Define your API routes
 app.use('/api/users', userRoutes);
-App.use('/api/accounts' , accountRoutes)
+app.use('/api/accounts' , accountRoutes)
 // A simple route to say hello from the server side
 app.get('/', (req, res) => {
   res.send('Hello from the server side!');

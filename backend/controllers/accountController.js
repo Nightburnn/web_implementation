@@ -1,8 +1,7 @@
 import asyncHandler from 'express-async-handler';
 import Account from '../models/accountModel.js';
 
-// Function to create a new account
-exports.createAccount = async (req, res) => {
+export const createAccount = asyncHandler(async (req, res) => {
   try {
     const { bank_name, account_number, account_type, balance, currency, owner, opened_at } = req.body;
     const newAccount = await Account.create({ bank_name, account_number, account_type, balance, currency, owner, opened_at });
@@ -11,10 +10,9 @@ exports.createAccount = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
+});
 
-// Function to get all accounts
-exports.getAllAccounts = async (req, res) => {
+export const getAllAccounts = asyncHandler(async (req, res) => {
   try {
     const accounts = await Account.find();
     res.json(accounts);
@@ -22,10 +20,9 @@ exports.getAllAccounts = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
+});
 
-// Function to get an account by ID
-exports.getAccountById = async (req, res) => {
+export const getAccountById = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
     const account = await Account.findById(id);
@@ -37,10 +34,9 @@ exports.getAccountById = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
+});
 
-// Function to update an account
-exports.updateAccount = async (req, res) => {
+export const updateAccount = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
     const { bank_name, account_number, account_type, balance, currency, owner, opened_at } = req.body;
@@ -53,10 +49,9 @@ exports.updateAccount = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
+});
 
-// Function to delete an account
-exports.deleteAccount = async (req, res) => {
+export const deleteAccount = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
     const deletedAccount = await Account.findByIdAndDelete(id);
@@ -68,4 +63,4 @@ exports.deleteAccount = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
+});

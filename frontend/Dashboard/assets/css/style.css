@@ -913,14 +913,15 @@ h6 {
   
 .swiper-slide {
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 .news-container {
-    overflow: hidden;
+   
     white-space: nowrap;
 }
 

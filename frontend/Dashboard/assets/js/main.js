@@ -431,30 +431,20 @@
             listItem.textContent = account;
     
             // Add a remove button for each account
-const removeButton = document.createElement("button");
-removeButton.textContent = "Remove";
-removeButton.classList.add("btn", "btn-danger", "btn-sm", "ms-2");
-removeButton.addEventListener("click", function () {
-    // Reset expenses and balance to 0
-    expenses = 0;
-    balance = 0;
+            const removeButton = document.createElement("button");
+            removeButton.textContent = "Remove";
+            removeButton.classList.add("btn", "btn-danger", "btn-sm", "ms-2");
+            removeButton.addEventListener("click", function () {
+                const index = storedAccounts.indexOf(account);
+                if (index !== -1) {
+                    storedAccounts.splice(index, 1);
+                    saveAccountsToLocalStorage(storedAccounts);
+                    addedAccountsList.removeChild(listItem);
+                }
+            });
     
-    // Update balance and expenses on the page
-    document.getElementById('balance').textContent = '₦' + balance.toFixed(2);
-    document.getElementById('expenses').textContent = '₦' + expenses.toFixed(2);
-    
-    // Remove the account from the list
-    const index = storedAccounts.indexOf(account);
-    if (index !== -1) {
-        storedAccounts.splice(index, 1);
-        saveAccountsToLocalStorage(storedAccounts);
-        addedAccountsList.removeChild(listItem);
-    }
-});
-    
-listItem.appendChild(removeButton);
-addedAccountsList.appendChild(listItem);
-
+            listItem.appendChild(removeButton);
+            addedAccountsList.appendChild(listItem);
         }
     
         // Load previously added accounts from local storage
@@ -698,6 +688,83 @@ document.addEventListener("DOMContentLoaded", function() {
         updateValues();
     });
 });
+document.addEventListener("DOMContentLoaded", function() {
+    // Check if the flag is set indicating "Sync Accounts" button was clicked on the other page
+    var syncAccountsClicked = sessionStorage.getItem("syncAccountsClicked");
+    if (syncAccountsClicked === "true") {
+        // Call the function to initialize ApexCharts with the new data
+        initializeApexCharts();
+        // Remove the flag from sessionStorage
+        sessionStorage.removeItem("syncAccountsClicked");
+    }
+});
+ // Function to initialize ApexCharts with the new data
+ function initializeApexCharts() {
+    new ApexCharts(document.querySelector("#reportsChart"), {
+        series: [{
+            name: 'Income',
+            data: [250000, 280000, 300000, 270000, 320000, 350000], // Sample income data in Naira
+        }, {
+            name: 'Expenses',
+            data: [180000, 200000, 220000, 210000, 240000, 250000], // Sample expense data in Naira
+        }, {
+            name: 'Savings',
+            data: [70000, 80000, 80000, 60000, 80000, 100000], // Sample savings data in Naira
+        }],
+        chart: {
+            height: 350,
+            type: 'area',
+            toolbar: {
+                show: false
+            },
+        },
+        markers: {
+            size: 4
+        },
+        colors: ['#4154f1', '#2eca6a', '#ff771d'],
+        fill: {
+            type: "gradient",
+            gradient: {
+                shadeIntensity: 1,
+                opacityFrom: 0.3,
+                opacityTo: 0.4,
+                stops: [0, 90, 100]
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 2
+        },
+        xaxis: {
+            type: 'datetime',
+            categories: ["2023-09-19", "2023-10-19", "2023-11-19", "2023-12-19", "2024-01-19", "2024-02-19"], // Adjusted for the past 6 months
+            labels: {
+                format: 'MMM yy', // Format the x-axis labels as month and year
+            }
+        },
+        yaxis: {
+            labels: {
+                formatter: function(value) {
+                    return '₦' + value.toLocaleString(); // Format y-axis labels as currency in Naira
+                }
+            }
+        },
+        tooltip: {
+            x: {
+                format: 'MMM yy' // Format tooltip date as month and year
+            },
+            y: {
+                formatter: function(value) {
+                    return '₦' + value.toLocaleString(); // Format tooltip value as currency in Naira
+                }
+            }
+        }
+    }).render();
+}
+
 
     
 })();

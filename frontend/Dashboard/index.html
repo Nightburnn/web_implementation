@@ -533,6 +533,34 @@
                         swiper.slideNext();
                     }
                     setInterval(autoSlide, 3000); // Slide every 3 seconds
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Retrieve the session variable set in the first page
+    var buttonClicked = sessionStorage.getItem('buttonClicked');
+
+    // Initialize balance and expenses
+    var balance = parseFloat(localStorage.getItem('balance')) || 20000; // Default balance of 20000 if not set
+    var expenses = balance * 0.4; // Initial expenses (40% of balance)
+
+    // Update values based on the button clicked
+    if (buttonClicked === 'syncAccount') {
+        // Logic for Sync Accounts button click
+        balance *= 1.73; // Example increase in balance by 73%
+        expenses = balance * 0.4; // Recalculate expenses
+    }
+
+    // Update balance and expenses on the page
+    document.getElementById('balance').textContent = '₦' + balance.toFixed(2);
+    document.getElementById('expenses').textContent = '₦' + expenses.toFixed(2);
+
+    // Clear the session variable after processing
+    sessionStorage.removeItem('buttonClicked');
+
+    // Update balance in localStorage for future reference
+    localStorage.setItem('balance', balance.toString());
+});
+
+
                 </script>
     
    

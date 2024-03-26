@@ -633,6 +633,22 @@ document.getElementById('prevButton').addEventListener('click', function() {
         showNewsItem(currentIndex - 1);
     }
 });
+document.addEventListener("DOMContentLoaded", function() {
+    // Event listener for Add Account button
+    document.getElementById('addAccountButton').addEventListener('click', function() {
+        // Set a session variable to indicate the button click
+        sessionStorage.setItem('buttonClicked', 'addAccount');
+        // Redirect to the second page
+        window.location.href = 'index.html';
+    });
+
+    // Event listener for Sync Accounts button
+    document.getElementById('syncAccountButton').addEventListener('click', function() {
+        // Set a session variable to indicate the button click
+        sessionStorage.setItem('buttonClicked', 'syncAccount');
+        
+    });
+});
 
 document.addEventListener("DOMContentLoaded", function() {
     // Initialize balance and expenses

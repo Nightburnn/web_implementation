@@ -240,6 +240,19 @@
                 sessionStorage.setItem("syncAccountsClicked", "true");
             });
         });
+        // Event listener for Add Account button
+document.getElementById('addAccountButton').addEventListener('click', function() {
+    // Sample transactions data (replace with actual data)
+    const transactions = [
+        'Payment received from John (₦100)',
+        'ATM withdrawal - ₦50',
+        'Purchase at XYZ Store - ₦75'
+    ];
+
+    // Update recent transactions
+    localStorage.setItem('recentTransactions', JSON.stringify(transactions));
+});
+
     </script>
     
     <!-- Vendor JS Files -->

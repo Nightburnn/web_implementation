@@ -765,6 +765,43 @@ document.addEventListener("DOMContentLoaded", function() {
     }).render();
 }
 
+// Function to update recent transactions
+function updateRecentTransactions(transactions) {
+    const recentTransactionsContainer = document.getElementById('recentTransactions');
+    recentTransactionsContainer.innerHTML = ''; // Clear previous content
+
+    // If there are transactions, display them
+    if (transactions.length > 0) {
+        transactions.forEach(transaction => {
+            const activityItem = document.createElement('div');
+            activityItem.classList.add('activity-item', 'd-flex');
+
+            const activityContent = document.createElement('div');
+            activityContent.classList.add('activity-content');
+            activityContent.textContent = transaction;
+
+            activityItem.appendChild(activityContent);
+            recentTransactionsContainer.appendChild(activityItem);
+        });
+    } else {
+        // If there are no transactions, display the default message
+        const activityItem = document.createElement('div');
+        activityItem.classList.add('activity-item', 'd-flex');
+
+        const activityContent = document.createElement('div');
+        activityContent.classList.add('activity-content');
+        activityContent.textContent = 'No recent transactions';
+
+        activityItem.appendChild(activityContent);
+        recentTransactionsContainer.appendChild(activityItem);
+    }
+}
+
+// Check if there are stored transactions from another page
+document.addEventListener('DOMContentLoaded', function() {
+    const storedTransactions = JSON.parse(localStorage.getItem('recentTransactions')) || [];
+    updateRecentTransactions(storedTransactions);
+});
 
     
 })();

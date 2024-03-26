@@ -6,7 +6,7 @@ import authProtect from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.post('/create', authProtect, createAccount);
+router.post('/create',  createAccount);
 router.delete('/delete/:id', authProtect, deleteAccount)
 router.get('/', authProtect, getAllAccounts)
 router.get('/:id', authProtect, getAccountById)

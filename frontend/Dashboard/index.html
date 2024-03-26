@@ -509,7 +509,9 @@
                     function createSlide(article) {
                         return `
                 <div class="swiper-slide">
-                    <h3>${article.title}</h3>
+                    <p>${article.title}</p>
+                    <p>${article.description}</p>
+                    <p>${article.urlToImage}</p>
                     <p>Author: ${article.author}</p>
                     <a href="${article.url}" target="_blank">Read more</a>
                 </div>

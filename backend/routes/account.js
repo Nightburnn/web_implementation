@@ -1,5 +1,5 @@
 import express from 'express';
-import { createAccount, getAllAccounts, getAccountById, updateAccount, deleteAccount } from '../controllers/accountController.js';
+import {createAccount, getAllAccounts, getAccountById, updateAccount, deleteAccount } from '../controllers/accountController.js';
 import passport from 'passport';
 import '../strategies/localStrategy.js';
 import authProtect from '../middleware/auth.js';

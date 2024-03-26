@@ -431,20 +431,30 @@
             listItem.textContent = account;
     
             // Add a remove button for each account
-            const removeButton = document.createElement("button");
-            removeButton.textContent = "Remove";
-            removeButton.classList.add("btn", "btn-danger", "btn-sm", "ms-2");
-            removeButton.addEventListener("click", function () {
-                const index = storedAccounts.indexOf(account);
-                if (index !== -1) {
-                    storedAccounts.splice(index, 1);
-                    saveAccountsToLocalStorage(storedAccounts);
-                    addedAccountsList.removeChild(listItem);
-                }
-            });
+const removeButton = document.createElement("button");
+removeButton.textContent = "Remove";
+removeButton.classList.add("btn", "btn-danger", "btn-sm", "ms-2");
+removeButton.addEventListener("click", function () {
+    // Reset expenses and balance to 0
+    expenses = 0;
+    balance = 0;
     
-            listItem.appendChild(removeButton);
-            addedAccountsList.appendChild(listItem);
+    // Update balance and expenses on the page
+    document.getElementById('balance').textContent = '₦' + balance.toFixed(2);
+    document.getElementById('expenses').textContent = '₦' + expenses.toFixed(2);
+    
+    // Remove the account from the list
+    const index = storedAccounts.indexOf(account);
+    if (index !== -1) {
+        storedAccounts.splice(index, 1);
+        saveAccountsToLocalStorage(storedAccounts);
+        addedAccountsList.removeChild(listItem);
+    }
+});
+    
+listItem.appendChild(removeButton);
+addedAccountsList.appendChild(listItem);
+
         }
     
         // Load previously added accounts from local storage

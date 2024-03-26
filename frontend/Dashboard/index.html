@@ -534,7 +534,7 @@
                     }
                     setInterval(autoSlide, 3000); // Slide every 3 seconds
 
-document.addEventListener("DOMContentLoaded", function() {
+                    document.addEventListener("DOMContentLoaded", function() {
     // Retrieve the session variable set in the first page
     var buttonClicked = sessionStorage.getItem('buttonClicked');
 
@@ -543,7 +543,11 @@ document.addEventListener("DOMContentLoaded", function() {
     var expenses = balance * 0.4; // Initial expenses (40% of balance)
 
     // Update values based on the button clicked
-    if (buttonClicked === 'syncAccount') {
+    if (buttonClicked === 'addAccount') {
+        // Logic for Add Account button click
+        balance *= 1.90; // Increase balance by 90%
+        expenses = balance * 0.4; // Recalculate expenses
+    } else if (buttonClicked === 'syncAccount') {
         // Logic for Sync Accounts button click
         balance *= 1.73; // Example increase in balance by 73%
         expenses = balance * 0.4; // Recalculate expenses
@@ -559,9 +563,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Update balance in localStorage for future reference
     localStorage.setItem('balance', balance.toString());
 });
-
-
-                </script>
+</script>
     
    
 

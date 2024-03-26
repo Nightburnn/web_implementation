@@ -2,15 +2,15 @@ import express from 'express';
 import {createAccount, getAllAccounts, getAccountById, updateAccount, deleteAccount } from '../controllers/accountController.js';
 import passport from 'passport';
 import '../strategies/localStrategy.js';
-import authProtect from '../middleware/auth.js';
+
 
 const router = express.Router();
 
 router.post('/create',  createAccount);
-router.delete('/delete/:id', authProtect, deleteAccount)
-router.get('/', authProtect, getAllAccounts)
-router.get('/:id', authProtect, getAccountById)
-router.patch('/:id', authProtect, updateAccount)
+router.delete('/delete/:id', , deleteAccount)
+router.get('/',  getAllAccounts)
+router.get('/:id', getAccountById)
+router.patch('/:id', updateAccount)
 
 
 export default router;

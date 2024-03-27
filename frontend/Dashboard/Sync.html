@@ -216,25 +216,43 @@
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("syncAccountButton").addEventListener("click", function() {
-                sessionStorage.setItem("syncAccountsClicked", "true");
+
+<!-- Include jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Function to add account
+        $("#addAccountButton").click(function () {
+            // Add your code here to add the account
+            // This could involve validating input, sending data to server, etc.
+            // Example: 
+            // var bank = $("#bank").val();
+            // var accountNumber = $("#accountNumber").val();
+            // Then send this data to your backend to add the account
+        });
+
+        // Function to sync accounts
+        $("#syncAccountButton").click(function () {
+            // Add your code here to sync accounts
+            // Fetch balance from MongoDB via AJAX
+            $.ajax({
+                url: 'https://traq-i4eg.onrender.com/api/accounts/6602b6d3a26e071f8efd4a1f',
+                type: 'GET',
+                success: function (response) {
+                    // Handle success, update UI with balance information
+                    var balance = response.balance;
+                    // Store balance in local storage
+                    localStorage.setItem('balance', balance);
+                    // Navigate to other page
+                    window.location.href = 'index.html';
+                },
+                error: function (xhr, status, error) {
+                    // Handle error
+                    console.error(xhr.responseText);
+                }
             });
         });
-        // Event listener for Add Account button
-document.getElementById('addAccountButton').addEventListener('click', function() {
-    // Sample transactions data (replace with actual data)
-    const transactions = [
-        'Payment received from John (₦100)',
-        'ATM withdrawal - ₦50',
-        'Purchase at XYZ Store - ₦75'
-    ];
-
-    // Update recent transactions
-    localStorage.setItem('recentTransactions', JSON.stringify(transactions));
-});
-
+    });
     </script>
     
     <!-- Vendor JS Files -->

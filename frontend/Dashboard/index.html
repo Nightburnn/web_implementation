@@ -456,13 +456,17 @@
                     }
                     setInterval(autoSlide, 3000); // Slide every 3 seconds
 
+                    // Retrieve balance from local storage
+var balance = localStorage.getItem('balance');
+// Populate balance on page
+$('#balance').text(balance); // Assuming you have an element with id="balance" to display the balance
+
                     document.addEventListener("DOMContentLoaded", function() {
     // Retrieve the session variable set in the first page
     var buttonClicked = sessionStorage.getItem('buttonClicked');
 
-    // Initialize balance and expenses
-    var balance = parseFloat(localStorage.getItem('balance')) || 20000; // Default balance of 20000 if not set
-    var expenses = balance * 0.4; // Initial expenses (40% of balance)
+    // Initialize and expenses
+   var expenses = balance * 0.4; // Initial expenses (40% of balance)
 
     // Update values based on the button clicked
     if (buttonClicked === 'addAccount') {

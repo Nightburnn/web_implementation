@@ -1,8 +1,7 @@
-import transactionController from './controllers/transactionController.js';
 import asyncHandler from 'express-async-handler';
+import Transaction from '../models/transactionModel.js';
 
-// Function to create a new transaction
-exports.createTransaction = async (req, res) => {
+export const createTransaction = asyncHandler(async (req, res) => {
   try {
     const { bank_name, account_number, transactions } = req.body;
     const newTransaction = await Transaction.create({ bank_name, account_number, transactions });
@@ -11,10 +10,9 @@ exports.createTransaction = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
+});
 
-// Function to get all transactions
-exports.getAllTransactions = async (req, res) => {
+export const getAllTransactions = asyncHandler(async (req, res) => {
   try {
     const transactions = await Transaction.find();
     res.json(transactions);
@@ -22,10 +20,9 @@ exports.getAllTransactions = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
+});
 
-// Function to get a transaction by ID
-exports.getTransactionById = async (req, res) => {
+export const getTransactionById = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
     const transaction = await Transaction.findById(id);
@@ -37,10 +34,9 @@ exports.getTransactionById = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
+});
 
-// Function to update a transaction
-exports.updateTransaction = async (req, res) => {
+export const updateTransaction = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
     const { bank_name, account_number, transactions } = req.body;
@@ -53,10 +49,9 @@ exports.updateTransaction = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
+});
 
-// Function to delete a transaction
-exports.deleteTransaction = async (req, res) => {
+export const deleteTransaction = asyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
     const deletedTransaction = await Transaction.findByIdAndDelete(id);
@@ -68,4 +63,18 @@ exports.deleteTransaction = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-};
+});
+
+export const getTransactionsByAccountNumber = asyncHandler(async (req, res) => {
+  try {
+    const { accountNumber } = req.params;
+    const transactions = await Transaction.find({ "transactions.account_number": accountNumber });
+    if (!transactions || transactions.length === 0) {
+      return res.status(404).json({ message: 'No transactions found for the given account number' });
+    }
+    res.json(transactions);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});

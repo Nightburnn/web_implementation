@@ -541,13 +541,6 @@
     
     // Function to populate values for balance, expenses summary, and balance trends
     function populateValues() {
-        // Balance
-        document.querySelector('.info-card.sales-card h6').textContent = '₦200,500';
-
-        // Expenses Summary
-        document.querySelector('.info-card.revenue-card h6').textContent = '₦183,264';
-        document.querySelector('.info-card.revenue-card .text-success').textContent = '8% Increase';
-
         // Balance Trends (Chart)
         var reportsChart = document.querySelector('#reportsChart');
         var apexChart = ApexCharts.getInstance(reportsChart);
@@ -651,8 +644,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Initialize balance and expenses
-    var balance = 1000; // Example initial balance
     var expenses = balance * 0.4; // Initial expenses (40% of balance)
     updateValues();
 

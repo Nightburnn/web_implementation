@@ -370,6 +370,9 @@
                 <!-- End Swiper Slideshow -->
 
                 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+                
+<!-- Include jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                 <script>
                     // Sample JSON data containing news articles
                     var jsonData = {
@@ -459,7 +462,7 @@
                     // Retrieve balance from local storage
 var balance = localStorage.getItem('balance');
 // Populate balance on page
-$('#balance').text(balance); // Assuming you have an element with id="balance" to display the balance
+$('#balance').text(balance); 
 
                     document.addEventListener("DOMContentLoaded", function() {
     // Retrieve the session variable set in the first page
